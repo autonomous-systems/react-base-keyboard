@@ -93,23 +93,25 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
           />
         ))}
       </Box>
-      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <KeyboardButton
-          label={language ? 'RU' : 'EN'}
-          onClick={() => handleLanguageClick('language')}
-          startIcon={<Language />}
-        />
-        {/* <KeyboardButton
+      <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+        <Box>
+          <KeyboardButton
+            label={language ? 'RU' : 'EN'}
+            onClick={() => handleLanguageClick('language')}
+            startIcon={<Language />}
+          />
+          {/* <KeyboardButton
         label="caps"
         onClick={() => handleButtonClick('caps')}
         variant={isCapsLockOn ? 'contained' : 'outlined'}
         color={isCapsLockOn ? 'success' : 'primary'}
       /> */}
-        <KeyboardIconButton
-          onClick={() => handleButtonClick('caps')}
-          color={isCapsLockOn ? 'success' : 'primary'}
-          children={<KeyboardCapslock />}
-        />
+          <KeyboardIconButton
+            onClick={() => handleButtonClick('caps')}
+            color={isCapsLockOn ? 'success' : 'primary'}
+            children={<KeyboardCapslock />}
+          />
+        </Box>
 
         <KeyboardButton
           onClick={handleSpaceClick}
