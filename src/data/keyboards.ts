@@ -34,6 +34,8 @@ export const russianButtons: string[] = [
   'б',
   'ю',
   '.',
+  '!',
+  '?',
   '-',
 ];
 
@@ -65,5 +67,7 @@ export const englishButtons: string[] = [
   'n',
   'm',
   '.',
+  '!',
+  '?',
   '-',
 ];
