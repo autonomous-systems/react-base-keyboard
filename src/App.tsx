@@ -1,8 +1,7 @@
 import react from 'react';
-
-import AllTools from './tools';
+import MuiKeyboard from './MuiKeyboard';
 
 const App = () => {
-  return <AllTools />;
+  return <MuiKeyboard />;
 };
 export default App;
