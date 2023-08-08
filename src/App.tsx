@@ -1,8 +1,8 @@
-import react, { FC } from 'react';
+import react from 'react';
 
 import AllTools from './tools';
 
-const App: FC = () => {
+const App = () => {
   return <AllTools />;
 };
 export default App;
