@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import KeyboardButton from './KeyboardButton';
+import KeyboardIconButton from './KeyboardIconButton';
 import { numbers, russianButtons, englishButtons } from 'src/data/keyboards';
 import { Box } from '@mui/material';
+import {
+  Backspace,
+  KeyboardCapslock,
+  SpaceBar,
+  SettingsBackupRestore,
+  KeyboardReturn,
+  Language,
+} from '@mui/icons-material';
 
 interface OnScreenKeyboardProps {
   onKeyPress: (key: string) => void;
@@ -61,15 +70,23 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
   };
 
   return (
-    <div style={{ width: '800px' }}>
-      {numbers.map((key) => (
+    <div style={{ width: '900px' }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         <KeyboardButton
-          key={key}
-          label={key}
-          onClick={() => handleButtonClick(key)}
-          variant="outlined"
+          size="medium"
+          onClick={handleReverseClick}
+          children={<SettingsBackupRestore />}
         />
-      ))}
+        {numbers.map((key) => (
+          <KeyboardButton
+            key={key}
+            label={key}
+            onClick={() => handleButtonClick(key)}
+            variant="outlined"
+          />
+        ))}
+        <KeyboardButton size="medium" onClick={handleBackspaceClick} children={<Backspace />} />
+      </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
         {layout.map((key) => (
           <KeyboardButton
@@ -80,20 +97,37 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
           />
         ))}
       </Box>
-      <KeyboardButton
-        label={language ? 'RU' : 'EN'}
-        onClick={() => handleLanguageClick('language')}
-      />
-      <KeyboardButton
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <KeyboardButton
+          label={language ? 'RU' : 'EN'}
+          onClick={() => handleLanguageClick('language')}
+          startIcon={<Language />}
+        />
+        {/* <KeyboardButton
         label="caps"
         onClick={() => handleButtonClick('caps')}
         variant={isCapsLockOn ? 'contained' : 'outlined'}
         color={isCapsLockOn ? 'success' : 'primary'}
-      />
-      <KeyboardButton label="space" onClick={handleSpaceClick} width="500px" variant="outlined" />
-      <KeyboardButton label="backspace" onClick={handleBackspaceClick} variant="outlined" />
-      <KeyboardButton label="reverse" onClick={handleReverseClick} variant="outlined" />
-      <KeyboardButton label="enter" onClick={handleEnterClick} variant="outlined" />
+      /> */}
+        <KeyboardIconButton
+          onClick={() => handleButtonClick('caps')}
+          color={isCapsLockOn ? 'success' : 'primary'}
+          children={<KeyboardCapslock />}
+        />
+
+        <KeyboardButton
+          onClick={handleSpaceClick}
+          width="500px"
+          variant="outlined"
+          startIcon={<SpaceBar />}
+        />
+        <KeyboardButton
+          onClick={handleEnterClick}
+          // variant="outlined"
+          children={<KeyboardReturn />}
+          color="primary"
+        />
+      </Box>
     </div>
   );
 };

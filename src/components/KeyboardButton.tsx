@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button, Box } from '@mui/material';
+import { Button } from '@mui/material';
 import { ButtonProps } from '@mui/material/Button';
 
 interface KeyboardButtonProps extends ButtonProps {
-  label: string;
+  label?: string;
   width?: string;
   onClick?: () => void;
 }
@@ -17,6 +17,8 @@ const KeyboardButton: React.FC<KeyboardButtonProps> = ({
   disabled,
   fullWidth,
   variant,
+  startIcon,
+  children,
 }) => {
   return (
     <Button
@@ -26,9 +28,11 @@ const KeyboardButton: React.FC<KeyboardButtonProps> = ({
       size={size}
       disabled={disabled}
       fullWidth={fullWidth}
+      startIcon={startIcon}
       sx={{ m: '5px', width: { width }, textTransform: 'none' }}
     >
       {label}
+      {children}
     </Button>
   );
 };
