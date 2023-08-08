@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import KeyboardButton from './KeyboardButton';
+import { numbers, russianButtons, englishButtons } from 'src/data/keyboards';
 import { Box } from '@mui/material';
 
 interface OnScreenKeyboardProps {
@@ -8,43 +9,7 @@ interface OnScreenKeyboardProps {
 
 const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
-  const numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
-  const buttons: string[] = [
-    '-',
-    'й',
-    'ц',
-    'у',
-    'к',
-    'е',
-    'н',
-    'г',
-    'ш',
-    'щ',
-    'з',
-    'х',
-    'ъ',
-    'ф',
-    'ы',
-    'в',
-    'а',
-    'п',
-    'р',
-    'о',
-    'л',
-    'д',
-    'ж',
-    'э',
-    'я',
-    'ч',
-    'с',
-    'м',
-    'и',
-    'т',
-    'ь',
-    'б',
-    'ю',
-    '.',
-  ];
+  const [language, setIsLanguage] = useState(true);
 
   useEffect(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
@@ -59,6 +24,8 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
       window.removeEventListener('keyup', handleKeyUp);
     };
   }, []);
+
+  const layout = language ? russianButtons : englishButtons;
 
   const handleButtonClick = (key: string) => {
     if (key === 'caps') {
@@ -87,6 +54,12 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
     onKeyPress('\n');
   };
 
+  const handleLanguageClick = (key: string) => {
+    if (key === 'language') {
+      setIsLanguage((pr) => !pr);
+    }
+  };
+
   return (
     <div style={{ width: '800px' }}>
       {numbers.map((key) => (
@@ -94,46 +67,33 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
           key={key}
           label={key}
           onClick={() => handleButtonClick(key)}
-          variant='outlined'
+          variant="outlined"
         />
       ))}
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        {buttons.map((key) => (
+        {layout.map((key) => (
           <KeyboardButton
             key={key}
             label={isCapsLockOn ? key.toUpperCase() : key}
             onClick={() => handleButtonClick(key)}
-            variant='outlined'
+            variant="outlined"
           />
         ))}
       </Box>
       <KeyboardButton
-        label='caps'
+        label={language ? 'RU' : 'EN'}
+        onClick={() => handleLanguageClick('language')}
+      />
+      <KeyboardButton
+        label="caps"
         onClick={() => handleButtonClick('caps')}
         variant={isCapsLockOn ? 'contained' : 'outlined'}
         color={isCapsLockOn ? 'success' : 'primary'}
       />
-      <KeyboardButton
-        label='space'
-        onClick={handleSpaceClick}
-        width='500px'
-        variant='outlined'
-      />
-      <KeyboardButton
-        label='backspace'
-        onClick={handleBackspaceClick}
-        variant='outlined'
-      />
-      <KeyboardButton
-        label='reverse'
-        onClick={handleReverseClick}
-        variant='outlined'
-      />
-      <KeyboardButton
-        label='enter'
-        onClick={handleEnterClick}
-        variant='outlined'
-      />
+      <KeyboardButton label="space" onClick={handleSpaceClick} width="500px" variant="outlined" />
+      <KeyboardButton label="backspace" onClick={handleBackspaceClick} variant="outlined" />
+      <KeyboardButton label="reverse" onClick={handleReverseClick} variant="outlined" />
+      <KeyboardButton label="enter" onClick={handleEnterClick} variant="outlined" />
     </div>
   );
 };
