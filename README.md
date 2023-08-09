@@ -2,6 +2,8 @@
 
 This is an example application featuring a virtual on-screen keyboard, developed using React and Material-UI (MUI).
 
+Read this in other languages: [Русский](README.ru.md)
+
 With this application, users can input text using the virtual keyboard, select the keyboard layout language (Russian or English), use Caps Lock, Backspace, Space, and Enter keys.
 
 ## Installation

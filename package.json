@@ -2,7 +2,7 @@
   "name": "react-material-ui-keyboard",
   "version": "0.0.1",
   "repository": "https://gitlab.auto-sys.su/Ramziij/react-material-ui-keyboard",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": {
     "name": "KirillRamzaev",
     "email": "k.ramzaev@auto-sys.su",
