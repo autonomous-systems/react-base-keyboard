@@ -72,7 +72,7 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
   return (
     <div style={{ width: '900px' }}>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        <KeyboardButton onClick={handleReverseClick} children={<SettingsBackupRestore />} />
+        {/* <KeyboardButton onClick={handleReverseClick} children={<SettingsBackupRestore />} /> */}
         {numbers.map((key) => (
           <KeyboardButton
             key={key}
@@ -117,14 +117,17 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
           onClick={handleSpaceClick}
           width="500px"
           variant="outlined"
-          startIcon={<SpaceBar />}
+          children={<SpaceBar />}
         />
-        <KeyboardButton
-          onClick={handleEnterClick}
-          // variant="outlined"
-          children={<KeyboardReturn />}
-          color="primary"
-        />
+        <Box>
+          <KeyboardButton onClick={handleReverseClick} children={<SettingsBackupRestore />} />
+          <KeyboardButton
+            onClick={handleEnterClick}
+            // variant="outlined"
+            children={<KeyboardReturn />}
+            color="primary"
+          />
+        </Box>
       </Box>
     </div>
   );

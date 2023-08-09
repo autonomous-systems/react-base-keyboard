@@ -1,4 +1,4 @@
-export const numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
+export const numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-'];
 
 export const russianButtons: string[] = [
   'й',
@@ -34,9 +34,9 @@ export const russianButtons: string[] = [
   'б',
   'ю',
   '.',
-  '!',
+  ',',
   '?',
-  '-',
+  '!',
 ];
 
 export const englishButtons: string[] = [
@@ -67,7 +67,7 @@ export const englishButtons: string[] = [
   'n',
   'm',
   '.',
-  '!',
+  ',',
   '?',
-  '-',
+  '!',
 ];
