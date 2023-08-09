@@ -96,7 +96,7 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
           <KeyboardButton
-            label={language ? 'RU' : 'EN'}
+            label={language ? 'EN' : 'RU'}
             onClick={() => handleLanguageClick('language')}
             startIcon={<Language />}
           />
