@@ -36,6 +36,7 @@ const MuiKeyboard = () => {
           paddingRight: 4,
           width: '100%',
           marginLeft: 0,
+          pt: 50,
         }}
         container
         justifyContent="center"
