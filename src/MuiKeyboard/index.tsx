@@ -56,7 +56,7 @@ const MuiKeyboard = () => {
             <Grid item xs={12} md={8}>
               <TextField
                 onChange={handleUrlChange}
-                placeholder="Оставьте свой отзыв"
+                placeholder="Click!"
                 value={inputValue}
                 variant="outlined"
                 fullWidth
