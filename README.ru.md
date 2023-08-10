@@ -9,7 +9,9 @@
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-<hr>
+![Screenshot](./screenshots/ru_screen.png)
+
+<!-- <hr> -->
 
 С помощью этого приложения, пользователи могут вводить текст на виртуальной клавиатуре, выбирать язык раскладки клавиатуры (русский или английский), использовать клавиши Caps Lock, Backspace, пробел и Enter.
 

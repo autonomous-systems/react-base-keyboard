@@ -9,9 +9,11 @@ This is an example application featuring a virtual on-screen keyboard, developed
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-<hr>
-
 Read this in other languages: [Русский](README.ru.md)
+
+![Screenshot](./screenshots/en_screen.png)
+
+<!-- <hr> -->
 
 With this application, users can input text using the virtual keyboard, select the keyboard layout language (Russian or English), use Caps Lock, Backspace, Space, and Enter keys.
 
