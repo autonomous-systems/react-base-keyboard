@@ -1,23 +1,26 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Grid, Box, Slide, TextField, ButtonProps } from '@mui/material';
+import React from 'react';
+import { Grid, Box, Slide, ButtonProps, SlideProps } from '@mui/material';
 import { OnScreenKeyboard } from '../OnScreenKeyboard';
 
 interface MuiProps {
   textField: React.ReactNode;
   slide: boolean;
-  checked: boolean;
+  direction?: SlideProps['direction'];
+  checked?: boolean;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
-  numbers: string[];
-  firstLanguage: string[];
-  secondLanguage: string[];
-  secondLangLabel: string;
-  firstLangLabel: string;
-  keyboardWidth: string | number;
+  numbers?: string[];
+  firstLanguage?: string[];
+  secondLanguage?: string[];
+  secondLangLabel?: string;
+  firstLangLabel?: string;
+  keyboardWidth?: string | number;
+  buttonSize?: ButtonProps['size'];
 }
 
 export const MuiKeyboard: React.FC<MuiProps> = ({
   textField,
   slide,
+  direction,
   checked,
   setInputValue,
   numbers,
@@ -26,14 +29,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   secondLangLabel,
   firstLangLabel,
   keyboardWidth,
+  buttonSize,
 }): JSX.Element => {
-  // const [inputValue, setInputValue] = useState<string>('');
-
-  // const handleUrlChange = (event: ChangeEvent<HTMLInputElement>): void => {
-  //   event.persist();
-  //   setInputValue(event.target.value);
-  // };
-
   const handleKeyPress = (key: string) => {
     if (key === 'backspace') {
       setInputValue((pr) => pr.slice(0, pr.length - 1));
@@ -48,11 +45,6 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
     }
   };
 
-  // const [checked, setChecked] = React.useState(false);
-
-  // const handleChange = () => {
-  //   setChecked((prev) => !prev);
-  // };
   return (
     <>
       <Grid
@@ -91,7 +83,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
               {textField}
             </Grid>
             {slide ? (
-              <Slide direction="up" in={checked} mountOnEnter unmountOnExit>
+              <Slide direction={direction} in={checked} mountOnEnter unmountOnExit>
                 <Box sx={{ display: 'flex', mt: '10px', justifyContent: 'center' }}>
                   <OnScreenKeyboard
                     onKeyPress={handleKeyPress}
@@ -101,6 +93,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                     secondLangLabel={secondLangLabel}
                     firstLangLabel={firstLangLabel}
                     keyboardWidth={keyboardWidth}
+                    buttonSize={buttonSize}
                   />
                 </Box>
               </Slide>
@@ -113,6 +106,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                 secondLangLabel={secondLangLabel}
                 firstLangLabel={firstLangLabel}
                 keyboardWidth={keyboardWidth}
+                buttonSize={buttonSize}
               />
             )}
           </Grid>
