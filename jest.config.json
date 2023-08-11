@@ -1,0 +1,25 @@
+{
+  "testEnvironment": "jsdom",
+  "testTimeout": 120000,
+  "transform": {
+    "^.+\\.(js|jsx|ts|tsx)$": [
+      "ts-jest",
+      {
+        "tsconfig": "tsconfig.jest.json"
+      }
+    ]
+  },
+  "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+  "moduleNameMapper": {
+    "\\.css$": "identity-obj-proxy"
+  },
+  "setupFilesAfterEnv": ["./src/test.setup.ts"],
+  "testMatch": ["**/__tests__/**/*.test.ts", "**/__tests__/**/*.test.tsx"],
+  "coverageDirectory": "coverage",
+  "coverageReporters": ["json", "text"],
+  "collectCoverageFrom": ["**/src/**/*", "!**/stories", "!**/*.stories.tsx"],
+  "displayName": {
+    "name": "react-material-ui-keyboard",
+    "color": "green"
+  }
+}
