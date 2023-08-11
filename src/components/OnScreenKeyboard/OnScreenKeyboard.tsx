@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import KeyboardButton from './KeyboardButton';
-import KeyboardIconButton from './KeyboardIconButton';
-import { numbers, russianButtons, englishButtons } from 'src/data/keyboards';
-import { Box } from '@mui/material';
+import KeyboardButton from '../KeyboardButton/KeyboardButton';
+import KeyboardIconButton from '../KeyboardIconButton/KeyboardIconButton';
+import { Box, ButtonProps } from '@mui/material';
 import {
   Backspace,
   KeyboardCapslock,
@@ -14,9 +13,25 @@ import {
 
 interface OnScreenKeyboardProps {
   onKeyPress: (key: string) => void;
+  numbers?: string[];
+  firstLanguage?: string[];
+  secondLanguage?: string[];
+  secondLangLabel?: string;
+  firstLangLabel?: string;
+  keyboardWidth?: string | number;
+  buttonSize?: ButtonProps['size'];
 }
 
-const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
+export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
+  onKeyPress,
+  numbers,
+  firstLanguage,
+  secondLanguage,
+  secondLangLabel,
+  firstLangLabel,
+  keyboardWidth,
+  buttonSize,
+}) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
   const [language, setIsLanguage] = useState(true);
 
@@ -34,7 +49,7 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
     };
   }, []);
 
-  const layout = language ? russianButtons : englishButtons;
+  const layout = language ? firstLanguage : secondLanguage;
 
   const handleButtonClick = (key: string) => {
     if (key === 'caps') {
@@ -70,42 +85,41 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
   };
 
   return (
-    <div style={{ width: '900px' }}>
+    <div style={{ width: keyboardWidth ? keyboardWidth : '900px' }}>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        {/* <KeyboardButton onClick={handleReverseClick} children={<SettingsBackupRestore />} /> */}
-        {numbers.map((key) => (
-          <KeyboardButton
-            key={key}
-            label={key}
-            onClick={() => handleButtonClick(key)}
-            variant="outlined"
-          />
-        ))}
+        {numbers &&
+          numbers.map((key) => (
+            <KeyboardButton
+              key={key}
+              label={key}
+              onClick={() => handleButtonClick(key)}
+              variant="outlined"
+            />
+          ))}
         <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
       </Box>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        {layout.map((key) => (
-          <KeyboardButton
-            key={key}
-            label={isCapsLockOn ? key.toUpperCase() : key}
-            onClick={() => handleButtonClick(key)}
-            variant="outlined"
-          />
-        ))}
+        {layout &&
+          layout.map((key) => (
+            <KeyboardButton
+              key={key}
+              label={isCapsLockOn ? key.toUpperCase() : key}
+              onClick={() => handleButtonClick(key)}
+              variant="outlined"
+            />
+          ))}
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
           <KeyboardButton
-            label={language ? 'EN' : 'RU'}
+            label={
+              language
+                ? `${secondLangLabel ? secondLangLabel : null}`
+                : `${firstLangLabel ? firstLangLabel : null}`
+            }
             onClick={() => handleLanguageClick('language')}
             startIcon={<Language />}
           />
-          {/* <KeyboardButton
-        label="caps"
-        onClick={() => handleButtonClick('caps')}
-        variant={isCapsLockOn ? 'contained' : 'outlined'}
-        color={isCapsLockOn ? 'success' : 'primary'}
-      /> */}
           <KeyboardIconButton
             onClick={() => handleButtonClick('caps')}
             color={isCapsLockOn ? 'success' : 'primary'}
@@ -125,12 +139,11 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
             onClick={handleEnterClick}
             // variant="outlined"
             children={<KeyboardReturn />}
-            color="primary"
+            // color={color}
+            size={buttonSize}
           />
         </Box>
       </Box>
     </div>
   );
 };
-
-export default OnScreenKeyboard;

@@ -45,3 +45,71 @@
 ## Лицензия
 
 Этот проект лицензирован под MIT License - подробности смотрите в файле [LICENSE](LICENSE).
+
+## MuiKeyboard
+
+Компонент MuiKeyboard предоставляет интегрированную клавиатуру для ввода текста.
+
+### Пример использования:
+
+```jsx
+import React, { useState } from 'react';
+import { TextField } from '@mui/material';
+import { MuiKeyboard } from 'react-material-ui-keyboard';
+import { russianButtons, englishButtons, numbers } from 'путь_к_вашим_клавишам';
+
+const App = () => {
+  const [checked, setChecked] = useState(false);
+  const [inputValue, setInputValue] = useState < string > '';
+
+  const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
+
+  return (
+    <MuiKeyboard
+      textField={
+        <TextField
+          onChange={handleUrlChange}
+          onClick={handleChange}
+          value={inputValue}
+          fullWidth
+          multiline
+        />
+      }
+      slide
+      direction="up"
+      checked={checked}
+      setInputValue={setInputValue}
+      numbers={numbers}
+      firstLanguage={russianButtons}
+      secondLanguage={englishButtons}
+      secondLangLabel="EN"
+      firstLangLabel="RU"
+      keyboardWidth={'900px'}
+    />
+  );
+};
+
+export default App;
+```
+
+### Свойства
+
+| Свойство          | Тип                                            | Описание                                                                     |
+| ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `textField`       | `JSX.Element`                                  | Компонент текстового поля ввода.                                             |
+| `slide`           | `boolean`                                      | Флаг, указывающий, должна ли клавиатура появиться с анимацией Slide.         |
+| `direction`       | `"left" \| "right" \| "up" \| "down"`          | Направление анимации Slide (используется, если `slide` установлен в `true`). |
+| `checked`         | `boolean`                                      | Флаг видимости клавиатуры.                                                   |
+| `setInputValue`   | `React.Dispatch<React.SetStateAction<string>>` | Callback для установки значения текстового поля.                             |
+| `numbers`         | `string[]`                                     | Массив символов для кнопок с цифрами.                                        |
+| `firstLanguage`   | `string[]`                                     | Массив символов для кнопок в первом языке.                                   |
+| `secondLanguage`  | `string[]`                                     | Массив символов для кнопок во втором языке.                                  |
+| `secondLangLabel` | `string`                                       | Метка для второго языка.                                                     |
+| `firstLangLabel`  | `string`                                       | Метка для первого языка.                                                     |
+| `keyboardWidth`   | `string \| number`                             | Ширина клавиатуры.                                                           |

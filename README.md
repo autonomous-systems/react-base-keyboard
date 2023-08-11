@@ -47,3 +47,73 @@ This will open a web application with a virtual on-screen keyboard.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## MuiKeyboard
+
+The MuiKeyboard component provides an integrated keyboard for text input.
+
+### Example Usage:
+
+```tsx
+import React, { useState } from 'react';
+import { TextField } from '@mui/material';
+import { MuiKeyboard } from 'react-material-ui-keyboard';
+import { russianButtons, englishButtons, numbers } from 'path_to_your_button_data';
+
+const App = () => {
+  const [checked, setChecked] = useState(false);
+  const [inputValue, setInputValue] = useState<string>('');
+
+  const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleChange = () => {
+    setChecked((prev) => !prev);
+  };
+
+  return (
+    <MuiKeyboard
+      textField={
+        <TextField
+          onChange={handleUrlChange}
+          onClick={handleChange}
+          value={inputValue}
+          fullWidth
+          multiline
+        />
+      }
+      slide
+      direction="up"
+      checked={checked}
+      setInputValue={setInputValue}
+      numbers={numbers}
+      firstLanguage={russianButtons}
+      secondLanguage={englishButtons}
+      secondLangLabel="EN"
+      firstLangLabel="RU"
+      keyboardWidth={'900px'}
+    />
+  );
+};
+
+export default App;
+```
+
+### Properties
+
+| Name              | Type                                           | Description                                                                  |
+| ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `textField*`      | `JSX.Element`                                  | Text input field component.                                                  |
+| `slide*`          | `boolean`                                      | A flag indicating whether the keyboard should appear with a Slide animation. |
+| `direction`       | `"left" \| "right" \| "up" \| "down"`          | Slide animation direction (used if `slide` is set to `true`).                |
+| `checked`         | `boolean`                                      | Keyboard visibility state flag.                                              |
+| `setInputValue*`  | `React.Dispatch<React.SetStateAction<string>>` | Callback to set the input field's value.                                     |
+| `numbers`         | `string[]`                                     | Array of characters for keyboard number buttons.                             |
+| `firstLanguage`   | `string[]`                                     | Array of characters for keyboard buttons in the first language.              |
+| `secondLanguage`  | `string[]`                                     | Array of characters for keyboard buttons in the second language.             |
+| `secondLangLabel` | `string`                                       | Label for the second language.                                               |
+| `firstLangLabel`  | `string`                                       | Label for the first language.                                                |
+| `keyboardWidth`   | `string \| number`                             | Keyboard width.                                                              |
+
+Props marked with \* are required.
