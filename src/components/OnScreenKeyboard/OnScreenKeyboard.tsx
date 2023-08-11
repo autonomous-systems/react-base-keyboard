@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import KeyboardButton from './KeyboardButton';
-import KeyboardIconButton from './KeyboardIconButton';
-import { numbers, russianButtons, englishButtons } from 'src/data/keyboards';
-import { Box } from '@mui/material';
+import KeyboardButton from '../KeyboardButton/KeyboardButton';
+import KeyboardIconButton from '../KeyboardIconButton/KeyboardIconButton';
+import { Box, ButtonProps } from '@mui/material';
 import {
   Backspace,
   KeyboardCapslock,
@@ -14,9 +13,23 @@ import {
 
 interface OnScreenKeyboardProps {
   onKeyPress: (key: string) => void;
+  numbers: string[];
+  firstLanguage: string[];
+  secondLanguage: string[];
+  secondLangLabel: string;
+  firstLangLabel: string;
+  keyboardWidth?: string | number;
 }
 
-const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
+export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
+  onKeyPress,
+  numbers,
+  firstLanguage,
+  secondLanguage,
+  secondLangLabel,
+  firstLangLabel,
+  keyboardWidth,
+}) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
   const [language, setIsLanguage] = useState(true);
 
@@ -34,7 +47,7 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
     };
   }, []);
 
-  const layout = language ? russianButtons : englishButtons;
+  const layout = language ? firstLanguage : secondLanguage;
 
   const handleButtonClick = (key: string) => {
     if (key === 'caps') {
@@ -70,9 +83,8 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
   };
 
   return (
-    <div style={{ width: '900px' }}>
+    <div style={{ width: keyboardWidth }}>
       <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        {/* <KeyboardButton onClick={handleReverseClick} children={<SettingsBackupRestore />} /> */}
         {numbers.map((key) => (
           <KeyboardButton
             key={key}
@@ -96,16 +108,10 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
           <KeyboardButton
-            label={language ? 'EN' : 'RU'}
+            label={language ? `${secondLangLabel}` : `${firstLangLabel}`}
             onClick={() => handleLanguageClick('language')}
             startIcon={<Language />}
           />
-          {/* <KeyboardButton
-        label="caps"
-        onClick={() => handleButtonClick('caps')}
-        variant={isCapsLockOn ? 'contained' : 'outlined'}
-        color={isCapsLockOn ? 'success' : 'primary'}
-      /> */}
           <KeyboardIconButton
             onClick={() => handleButtonClick('caps')}
             color={isCapsLockOn ? 'success' : 'primary'}
@@ -125,12 +131,11 @@ const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({ onKeyPress }) => {
             onClick={handleEnterClick}
             // variant="outlined"
             children={<KeyboardReturn />}
-            color="primary"
+            // color={color}
+            // size={buttonProps.size}
           />
         </Box>
       </Box>
     </div>
   );
 };
-
-export default OnScreenKeyboard;
