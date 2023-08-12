@@ -3,8 +3,8 @@ import { Grid, Box, Slide, ButtonProps, SlideProps } from '@mui/material';
 import { OnScreenKeyboard } from '../OnScreenKeyboard';
 
 interface MuiProps {
-  textField: React.ReactNode;
-  slide: boolean;
+  textField?: React.ReactNode;
+  slide?: boolean;
   direction?: SlideProps['direction'];
   checked?: boolean;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
@@ -70,8 +70,9 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
           }}
         >
           <Grid container spacing={4} justifyContent="center" direction="row" rowSpacing={1}>
-            <Grid item xs={12} md={8}>
-              {/* <TextField
+            {textField && (
+              <Grid item xs={12} md={8}>
+                {/* <TextField
                 onChange={handleUrlChange}
                 placeholder="Click!"
                 value={inputValue}
@@ -80,9 +81,10 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                 multiline
                 onClick={handleChange}
               /> */}
-              {textField}
-            </Grid>
-            {slide ? (
+                {textField}
+              </Grid>
+            )}
+            {slide && (
               <Slide direction={direction} in={checked} mountOnEnter unmountOnExit>
                 <Box sx={{ display: 'flex', mt: '10px', justifyContent: 'center' }}>
                   <OnScreenKeyboard
@@ -97,7 +99,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                   />
                 </Box>
               </Slide>
-            ) : (
+            )}
+            {!slide && (
               <OnScreenKeyboard
                 onKeyPress={handleKeyPress}
                 numbers={numbers}

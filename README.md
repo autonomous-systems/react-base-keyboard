@@ -104,8 +104,8 @@ export default App;
 
 | Name              | Type                                           | Description                                                                  |
 | ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
-| `textField*`      | `JSX.Element`                                  | Text input field component.                                                  |
-| `slide*`          | `boolean`                                      | A flag indicating whether the keyboard should appear with a Slide animation. |
+| `textField`       | `JSX.Element`                                  | Text input field component.                                                  |
+| `slide`           | `boolean`                                      | A flag indicating whether the keyboard should appear with a Slide animation. |
 | `direction`       | `"left" \| "right" \| "up" \| "down"`          | Slide animation direction (used if `slide` is set to `true`).                |
 | `checked`         | `boolean`                                      | Keyboard visibility state flag.                                              |
 | `setInputValue*`  | `React.Dispatch<React.SetStateAction<string>>` | Callback to set the input field's value.                                     |
@@ -117,3 +117,68 @@ export default App;
 | `keyboardWidth`   | `string \| number`                             | Keyboard width.                                                              |
 
 Props marked with \* are required.
+
+### Usage without TextField and with Context
+
+If you want to use the MuiKeyboard component without the TextField and manage the input value using context, follow these steps:
+
+1. Wrap your application with the `InputValueProvider`:
+
+```tsx
+// index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { InputValueProvider } from 'react-material-ui-keyboard';
+
+ReactDOM.render(
+  <InputValueProvider>
+    <App />
+  </InputValueProvider>,
+  document.getElementById('root')
+);
+```
+
+2. Update your component where you use MuiKeyboard to use context:
+
+```tsx
+import React, { ChangeEvent } from 'react';
+import { MuiKeyboard } from 'react-material-ui-keyboard';
+import { numbers, russianButtons, englishButtons } from 'path_to_your_button_data';
+import { useInputValue } from 'react-material-ui-keyboard';
+
+const App = () => {
+  const [checked, setChecked] = React.useState(false);
+  const { inputValue, setInputValue } = useInputValue();
+  return (
+    <MuiKeyboard
+      setInputValue={setInputValue}
+      numbers={numbers}
+      firstLanguage={russianButtons}
+      secondLanguage={englishButtons}
+      secondLangLabel="EN"
+      firstLangLabel="RU"
+      keyboardWidth={'900px'}
+    />
+  );
+};
+
+export default App;
+```
+
+3. Then yo may use the `useInputValue` hook in any another component to access the input value and setter from the context.
+
+```tsx
+import React from 'react';
+import { TextField } from '@mui/material';
+import { useInputValue } from 'react-material-ui-keyboard';
+
+const Textfield = () => {
+  const { inputValue, setInputValue } = useInputValue();
+  return <TextField value={inputValue} label="Click!"></TextField>;
+};
+
+export default Textfield;
+```
+
+![Example_context](./screenshots/keyboard_context.png)
