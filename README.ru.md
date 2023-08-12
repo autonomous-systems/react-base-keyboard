@@ -113,3 +113,70 @@ export default App;
 | `secondLangLabel` | `string`                                       | Метка для второго языка.                                                     |
 | `firstLangLabel`  | `string`                                       | Метка для первого языка.                                                     |
 | `keyboardWidth`   | `string \| number`                             | Ширина клавиатуры.                                                           |
+
+Реквизиты, отмеченные символом \*, обязательны для использования.
+
+### Использование без текстового поля и с контекстом
+
+Если вы хотите использовать компонент MuiKeyboard без текстового поля и управлять входным значением с помощью контекста, выполните следующие действия:
+
+1. Оберните ваше приложение `InputValueProvider`:
+
+```tsx
+// index.tsx
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import { InputValueProvider } from 'react-material-ui-keyboard';
+
+ReactDOM.render(
+  <InputValueProvider>
+    <App />
+  </InputValueProvider>,
+  document.getElementById('root')
+);
+```
+
+2.Обновите свой компонент, в котором вы используете клавиатуру Mui, чтобы использовать контекст
+
+```tsx
+import React, { ChangeEvent } from 'react';
+import { MuiKeyboard } from 'react-material-ui-keyboard';
+import { numbers, russianButtons, englishButtons } from 'path_to_your_button_data';
+import { useInputValue } from 'react-material-ui-keyboard';
+
+const App = () => {
+  const [checked, setChecked] = React.useState(false);
+  const { inputValue, setInputValue } = useInputValue();
+  return (
+    <MuiKeyboard
+      setInputValue={setInputValue}
+      numbers={numbers}
+      firstLanguage={russianButtons}
+      secondLanguage={englishButtons}
+      secondLangLabel="EN"
+      firstLangLabel="RU"
+      keyboardWidth={'900px'}
+    />
+  );
+};
+
+export default App;
+```
+
+3.Затем вы можете использовать `useInputValue` в любом другом компоненте, чтобы получить доступ к входному значению и установщику из контекста.
+
+```tsx
+import React from 'react';
+import { TextField } from '@mui/material';
+import { useInputValue } from 'react-material-ui-keyboard';
+
+const Textfield = () => {
+  const { inputValue, setInputValue } = useInputValue();
+  return <TextField value={inputValue} label="Click!"></TextField>;
+};
+
+export default Textfield;
+```
+
+![Example_context](./screenshots/keyboard_context.png)

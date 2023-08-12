@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react';
 import { MuiKeyboard } from './components/MuiKeyboard';
 import { TextField } from '@mui/material';
 import { numbers, russianButtons, englishButtons } from './data/Keyboards';
-import { InputValueProvider, useInputValue } from './context/InputValueProvider';
+import { useInputValue } from './context';
 
 const App = () => {
   const [checked, setChecked] = React.useState(false);
