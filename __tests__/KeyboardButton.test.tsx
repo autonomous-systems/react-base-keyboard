@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import KeyboardButton from '../src/components/KeyboardButton/KeyboardButton';
+import { KeyboardButton } from '../src/components/KeyboardButton';
 
 describe('KeyboardButton', () => {
   test('renders with label', () => {

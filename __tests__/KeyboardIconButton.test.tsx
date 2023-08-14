@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import KeyboardIconButton from '../src/components/KeyboardIconButton/KeyboardIconButton';
+import { KeyboardIconButton } from '../src/components/KeyboardIconButton';
 
 describe('KeyboardIconButton', () => {
   test('renders without errors', () => {

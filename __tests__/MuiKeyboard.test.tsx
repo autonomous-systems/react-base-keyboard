@@ -12,7 +12,12 @@ describe('MuiKeyboard', () => {
 
   test('renders without errors', () => {
     const { container } = render(
-      <MuiKeyboard textField={<input />} slide={false} setInputValue={mockSetInputValue} />
+      <MuiKeyboard
+        textField={<input />}
+        slide={false}
+        setInputValue={mockSetInputValue}
+        firstLanguage={russianButtons}
+      />
     );
     expect(container).toBeInTheDocument();
   });
@@ -35,7 +40,12 @@ describe('MuiKeyboard', () => {
 
   test('calls setInputValue with backspace key', () => {
     const { getByTestId } = render(
-      <MuiKeyboard textField={<input />} slide={false} setInputValue={mockSetInputValue} />
+      <MuiKeyboard
+        textField={<input />}
+        slide={false}
+        setInputValue={mockSetInputValue}
+        firstLanguage={russianButtons}
+      />
     );
     const backspaceButton = getByTestId('BackspaceIcon');
     fireEvent.click(backspaceButton);

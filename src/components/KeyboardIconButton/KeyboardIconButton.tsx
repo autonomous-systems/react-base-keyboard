@@ -6,7 +6,7 @@ interface KeyboardIconButtonProps extends IconButtonProps {
   onClick?: () => void;
 }
 
-const KeyboardIconButton: React.FC<KeyboardIconButtonProps> = ({
+export const KeyboardIconButton: React.FC<KeyboardIconButtonProps> = ({
   onClick,
   children,
   color,
@@ -21,5 +21,3 @@ const KeyboardIconButton: React.FC<KeyboardIconButtonProps> = ({
     </IconButton>
   );
 };
-
-export default KeyboardIconButton;

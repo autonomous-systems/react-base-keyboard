@@ -106,13 +106,15 @@ export default App;
 | `slide`           | `boolean`                                      | Флаг, указывающий, должна ли клавиатура появиться с анимацией Slide.         |
 | `direction`       | `"left" \| "right" \| "up" \| "down"`          | Направление анимации Slide (используется, если `slide` установлен в `true`). |
 | `checked`         | `boolean`                                      | Флаг видимости клавиатуры.                                                   |
-| `setInputValue`   | `React.Dispatch<React.SetStateAction<string>>` | Callback для установки значения текстового поля.                             |
+| `setInputValue*`  | `React.Dispatch<React.SetStateAction<string>>` | Callback для установки значения текстового поля.                             |
 | `numbers`         | `string[]`                                     | Массив символов для кнопок с цифрами.                                        |
-| `firstLanguage`   | `string[]`                                     | Массив символов для кнопок в первом языке.                                   |
+| `firstLanguage*`  | `string[]`                                     | Массив символов для кнопок в первом языке.                                   |
 | `secondLanguage`  | `string[]`                                     | Массив символов для кнопок во втором языке.                                  |
 | `secondLangLabel` | `string`                                       | Метка для второго языка.                                                     |
 | `firstLangLabel`  | `string`                                       | Метка для первого языка.                                                     |
 | `keyboardWidth`   | `string \| number`                             | Ширина клавиатуры.                                                           |
+| `labelButton`     | `boolean`                                      | Кнопка переключения языков.                                                  |
+| `reverseButton`   | `boolean`                                      | Кнопка сброса текста.                                                        |
 
 Реквизиты, отмеченные символом \*, обязательны для использования.
 
@@ -157,6 +159,8 @@ const App = () => {
       secondLangLabel="EN"
       firstLangLabel="RU"
       keyboardWidth={'900px'}
+      labelButton
+      reverseButton
     />
   );
 };

@@ -9,12 +9,14 @@ interface MuiProps {
   checked?: boolean;
   setInputValue: React.Dispatch<React.SetStateAction<string>>;
   numbers?: string[];
-  firstLanguage?: string[];
+  firstLanguage: string[];
   secondLanguage?: string[];
   secondLangLabel?: string;
   firstLangLabel?: string;
   keyboardWidth?: string | number;
   buttonSize?: ButtonProps['size'];
+  labelButton?: boolean;
+  reverseButton?: boolean;
 }
 
 export const MuiKeyboard: React.FC<MuiProps> = ({
@@ -30,6 +32,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   firstLangLabel,
   keyboardWidth,
   buttonSize,
+  labelButton,
+  reverseButton,
 }): JSX.Element => {
   const handleKeyPress = (key: string) => {
     if (key === 'backspace') {
@@ -72,15 +76,6 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
           <Grid container spacing={4} justifyContent="center" direction="row" rowSpacing={1}>
             {textField && (
               <Grid item xs={12} md={8}>
-                {/* <TextField
-                onChange={handleUrlChange}
-                placeholder="Click!"
-                value={inputValue}
-                variant="outlined"
-                fullWidth
-                multiline
-                onClick={handleChange}
-              /> */}
                 {textField}
               </Grid>
             )}
@@ -110,6 +105,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                 firstLangLabel={firstLangLabel}
                 keyboardWidth={keyboardWidth}
                 buttonSize={buttonSize}
+                labelButton={labelButton}
+                reverseButton={reverseButton}
               />
             )}
           </Grid>

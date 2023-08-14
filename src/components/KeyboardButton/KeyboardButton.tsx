@@ -8,7 +8,7 @@ interface KeyboardButtonProps extends ButtonProps {
   onClick?: () => void;
 }
 
-const KeyboardButton: React.FC<KeyboardButtonProps> = ({
+export const KeyboardButton: React.FC<KeyboardButtonProps> = ({
   label,
   onClick,
   width,
@@ -36,5 +36,3 @@ const KeyboardButton: React.FC<KeyboardButtonProps> = ({
     </Button>
   );
 };
-
-export default KeyboardButton;

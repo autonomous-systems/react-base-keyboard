@@ -110,11 +110,13 @@ export default App;
 | `checked`         | `boolean`                                      | Keyboard visibility state flag.                                              |
 | `setInputValue*`  | `React.Dispatch<React.SetStateAction<string>>` | Callback to set the input field's value.                                     |
 | `numbers`         | `string[]`                                     | Array of characters for keyboard number buttons.                             |
-| `firstLanguage`   | `string[]`                                     | Array of characters for keyboard buttons in the first language.              |
+| `firstLanguage*`  | `string[]`                                     | Array of characters for keyboard buttons in the first language.              |
 | `secondLanguage`  | `string[]`                                     | Array of characters for keyboard buttons in the second language.             |
 | `secondLangLabel` | `string`                                       | Label for the second language.                                               |
 | `firstLangLabel`  | `string`                                       | Label for the first language.                                                |
 | `keyboardWidth`   | `string \| number`                             | Keyboard width.                                                              |
+| `labelButton`     | `boolean`                                      | Language switch button.                                                      |
+| `reverseButton`   | `boolean`                                      | Text reset button.                                                           |
 
 Props marked with \* are required.
 
@@ -159,6 +161,8 @@ const App = () => {
       secondLangLabel="EN"
       firstLangLabel="RU"
       keyboardWidth={'900px'}
+      labelButton
+      reverseButton
     />
   );
 };
