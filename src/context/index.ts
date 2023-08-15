@@ -1,1 +1,1 @@
-export * from './InputValueProvider';
+export * from './MuiKeyboardProvider';
