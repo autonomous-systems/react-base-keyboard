@@ -46,11 +46,7 @@
 
 Этот проект лицензирован под MIT License - подробности смотрите в файле [LICENSE](LICENSE).
 
-## MuiKeyboard
-
-Компонент MuiKeyboard предоставляет интегрированную клавиатуру для ввода текста.
-
-### Пример использования:
+## Пример использования:
 
 ```jsx
 import React, { useState } from 'react';
@@ -100,87 +96,70 @@ export default App;
 
 ### Свойства
 
-| Свойство          | Тип                                            | Описание                                                                     |
-| ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
-| `textField`       | `JSX.Element`                                  | Компонент текстового поля ввода.                                             |
-| `slide`           | `boolean`                                      | Флаг, указывающий, должна ли клавиатура появиться с анимацией Slide.         |
-| `direction`       | `"left" \| "right" \| "up" \| "down"`          | Направление анимации Slide (используется, если `slide` установлен в `true`). |
-| `checked`         | `boolean`                                      | Флаг видимости клавиатуры.                                                   |
-| `setInputValue*`  | `React.Dispatch<React.SetStateAction<string>>` | Callback для установки значения текстового поля.                             |
-| `numbers`         | `string[]`                                     | Массив символов для кнопок с цифрами.                                        |
-| `firstLanguage*`  | `string[]`                                     | Массив символов для кнопок в первом языке.                                   |
-| `secondLanguage`  | `string[]`                                     | Массив символов для кнопок во втором языке.                                  |
-| `secondLangLabel` | `string`                                       | Метка для второго языка.                                                     |
-| `firstLangLabel`  | `string`                                       | Метка для первого языка.                                                     |
-| `keyboardWidth`   | `string \| number`                             | Ширина клавиатуры.                                                           |
-| `labelButton`     | `boolean`                                      | Кнопка переключения языков.                                                  |
-| `reverseButton`   | `boolean`                                      | Кнопка сброса текста.                                                        |
+| Свойство          | Тип                                                | Описание                                                                                                                                         |
+| ----------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `textField`       | `JSX.Element`                                      | Компонент текстового поля ввода.                                                                                                                 |
+| `slide`           | `boolean`                                          | Флаг, указывающий, должна ли клавиатура появиться с анимацией Slide. По умолчанию, `true`.                                                       |
+| `direction`       | `SlideProps <"left" \| "right" \| "up" \| "down">` | Направление анимации Slide (используется, если `slide` установлен в `true`). По умолчанию, `up`.                                                 |
+| `checked`         | `boolean`                                          | Флаг видимости клавиатуры.                                                                                                                       |
+| `setInputValue`   | `React.Dispatch<React.SetStateAction<string>>`     | Callback для установки значения текстового поля.                                                                                                 |
+| `numbers`         | `string[]`                                         | Массив символов для кнопок с цифрами.                                                                                                            |
+| `firstLanguage*`  | `string[]`                                         | Массив символов для кнопок в первом языке.                                                                                                       |
+| `secondLanguage`  | `string[]`                                         | Массив символов для кнопок во втором языке.                                                                                                      |
+| `secondLangLabel` | `string`                                           | Метка для второго языка.                                                                                                                         |
+| `firstLangLabel`  | `string`                                           | Метка для первого языка.                                                                                                                         |
+| `keyboardWidth`   | `string \| number`                                 | Ширина клавиатуры.                                                                                                                               |
+| `buttonSize`      | `ButtonProps <"small" \| "medium" \| "large">`     | Размер кнопки.                                                                                                                                   |
+| `labelLangButton` | `boolean`                                          | Кнопка переключения языков.                                                                                                                      |
+| `reverseButton`   | `boolean`                                          | Кнопка сброса текста.                                                                                                                            |
+| `sx`              | `SxProps`                                          | [sx prop - это ярлык для определения пользовательских стилей, который имеет доступ к теме.](https://mui.com/system/getting-started/the-sx-prop/) |
 
 Реквизиты, отмеченные символом \*, обязательны для использования.
 
 ### Использование без текстового поля и с контекстом
 
-Если вы хотите использовать компонент MuiKeyboard без текстового поля и управлять входным значением с помощью контекста, выполните следующие действия:
+Если вы хотите использовать компонент MuiKeyboard без встроенного текстового поля и управлять входным значением с помощью контекста, выполните следующие действия:
 
-1. Оберните ваше приложение `InputValueProvider`:
+1. Оберните ваше приложение `MuiKeyboardProvider`:
 
 ```tsx
 // index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { InputValueProvider } from 'react-material-ui-keyboard';
+import { MuiKeyboardProvider } from 'react-material-ui-keyboard';
+import { russianButtons } from 'react-material-ui-keyboard';
 
 ReactDOM.render(
-  <InputValueProvider>
+  <MuiKeyboardProvider
+    firstLanguage={russianButtons}
+    sx={{ display: 'flex', justifyContent: 'center', mt: 50 }}
+    keyboardWidth={'900px'}
+  >
     <App />
-  </InputValueProvider>,
+  </MuiKeyboardProvider>,
   document.getElementById('root')
 );
 ```
 
-2.Обновите свой компонент, в котором вы используете клавиатуру Mui, чтобы использовать контекст
+2. Затем вы можете использовать `useMuiKeyboard` в любом другом компоненте, чтобы получить доступ к входному значению и установщику из контекста.
 
 ```tsx
-import React, { ChangeEvent } from 'react';
-import { MuiKeyboard } from 'react-material-ui-keyboard';
-import { numbers, russianButtons, englishButtons } from 'path_to_your_button_data';
-import { useInputValue } from 'react-material-ui-keyboard';
+// App.tsx
+import React from 'react';
+import { TextField } from '@mui/material';
+import { useMuiKeyboard } from 'react-material-ui-keyboard';
 
 const App = () => {
-  const [checked, setChecked] = React.useState(false);
-  const { inputValue, setInputValue } = useInputValue();
+  const { inputValue, slideEffect } = useMuiKeyboard();
   return (
-    <MuiKeyboard
-      setInputValue={setInputValue}
-      numbers={numbers}
-      firstLanguage={russianButtons}
-      secondLanguage={englishButtons}
-      secondLangLabel="EN"
-      firstLangLabel="RU"
-      keyboardWidth={'900px'}
-      labelButton
-      reverseButton
-    />
+    <TextField value={inputValue} onClick={slideEffect} label="Click!">
+      Hello
+    </TextField>
   );
 };
 
 export default App;
-```
-
-3.Затем вы можете использовать `useInputValue` в любом другом компоненте, чтобы получить доступ к входному значению и установщику из контекста.
-
-```tsx
-import React from 'react';
-import { TextField } from '@mui/material';
-import { useInputValue } from 'react-material-ui-keyboard';
-
-const Textfield = () => {
-  const { inputValue, setInputValue } = useInputValue();
-  return <TextField value={inputValue} label="Click!"></TextField>;
-};
-
-export default Textfield;
 ```
 
 ![Example_context](./screenshots/keyboard_context.png)
