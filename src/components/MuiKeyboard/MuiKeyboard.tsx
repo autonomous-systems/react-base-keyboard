@@ -16,7 +16,7 @@ interface MuiProps {
   firstLangLabel?: string;
   keyboardWidth?: string | number;
   buttonSize?: ButtonProps['size'];
-  labelButton?: boolean;
+  labelLangButton?: boolean;
   reverseButton?: boolean;
   sx?: SxProps;
 }
@@ -34,7 +34,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   firstLangLabel,
   keyboardWidth,
   buttonSize,
-  labelButton,
+  labelLangButton,
   reverseButton,
   sx,
 }): JSX.Element => {
@@ -82,7 +82,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
             firstLangLabel={firstLangLabel}
             keyboardWidth={keyboardWidth}
             buttonSize={buttonSize}
-            labelButton={labelButton}
+            labelLangButton={labelLangButton}
             reverseButton={reverseButton}
           />
         )}

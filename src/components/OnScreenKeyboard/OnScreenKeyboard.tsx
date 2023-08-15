@@ -20,7 +20,7 @@ interface OnScreenKeyboardProps {
   firstLangLabel?: string;
   keyboardWidth?: string | number;
   buttonSize?: ButtonProps['size'];
-  labelButton?: boolean;
+  labelLangButton?: boolean;
   reverseButton?: boolean;
 }
 
@@ -33,7 +33,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
   firstLangLabel,
   keyboardWidth,
   buttonSize,
-  labelButton,
+  labelLangButton,
   reverseButton,
 }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
@@ -116,7 +116,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
       </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
-          {labelButton && (
+          {labelLangButton && (
             <KeyboardButton
               label={
                 language

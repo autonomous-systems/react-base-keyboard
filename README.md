@@ -48,11 +48,7 @@ This will open a web application with a virtual on-screen keyboard.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## MuiKeyboard
-
-The MuiKeyboard component provides an integrated keyboard for text input.
-
-### Example Usage:
+## Example Usage:
 
 ```tsx
 import React, { useState } from 'react';
@@ -93,6 +89,10 @@ const App = () => {
       secondLangLabel="EN"
       firstLangLabel="RU"
       keyboardWidth={'900px'}
+      buttonSize="medium"
+      labelLangButton
+      reverseButton
+      sx={{ display: 'flex' }}
     />
   );
 };
@@ -102,87 +102,70 @@ export default App;
 
 ### Properties
 
-| Name              | Type                                           | Description                                                                  |
-| ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------------- |
-| `textField`       | `JSX.Element`                                  | Text input field component.                                                  |
-| `slide`           | `boolean`                                      | A flag indicating whether the keyboard should appear with a Slide animation. |
-| `direction`       | `"left" \| "right" \| "up" \| "down"`          | Slide animation direction (used if `slide` is set to `true`).                |
-| `checked`         | `boolean`                                      | Keyboard visibility state flag.                                              |
-| `setInputValue*`  | `React.Dispatch<React.SetStateAction<string>>` | Callback to set the input field's value.                                     |
-| `numbers`         | `string[]`                                     | Array of characters for keyboard number buttons.                             |
-| `firstLanguage*`  | `string[]`                                     | Array of characters for keyboard buttons in the first language.              |
-| `secondLanguage`  | `string[]`                                     | Array of characters for keyboard buttons in the second language.             |
-| `secondLangLabel` | `string`                                       | Label for the second language.                                               |
-| `firstLangLabel`  | `string`                                       | Label for the first language.                                                |
-| `keyboardWidth`   | `string \| number`                             | Keyboard width.                                                              |
-| `labelButton`     | `boolean`                                      | Language switch button.                                                      |
-| `reverseButton`   | `boolean`                                      | Text reset button.                                                           |
+| Name              | Type                                               | Description                                                                                                                               |
+| ----------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `textField`       | `JSX.Element`                                      | Text input field component.                                                                                                               |
+| `slide`           | `boolean`                                          | A flag indicating whether the keyboard should appear with a Slide animation. By default, `true`.                                          |
+| `direction`       | `SlideProps <"left" \| "right" \| "up" \| "down">` | Slide animation direction (used if `slide` is set to `true`). By default, `up`.                                                           |
+| `checked`         | `boolean`                                          | Keyboard visibility state flag.                                                                                                           |
+| `setInputValue`   | `React.Dispatch<React.SetStateAction<string>>`     | Callback to set the input field's value.                                                                                                  |
+| `numbers`         | `string[]`                                         | Array of characters for keyboard number buttons.                                                                                          |
+| `firstLanguage*`  | `string[]`                                         | Array of characters for keyboard buttons in the first language.                                                                           |
+| `secondLanguage`  | `string[]`                                         | Array of characters for keyboard buttons in the second language.                                                                          |
+| `secondLangLabel` | `string`                                           | Label for the second language.                                                                                                            |
+| `firstLangLabel`  | `string`                                           | Label for the first language.                                                                                                             |
+| `keyboardWidth`   | `string \| number`                                 | Keyboard width.                                                                                                                           |
+| `buttonSize`      | `ButtonProps <"small" \| "medium" \| "large">`     | Button size.                                                                                                                              |
+| `labelLangButton` | `boolean`                                          | Language switch button.                                                                                                                   |
+| `reverseButton`   | `boolean`                                          | Text reset button.                                                                                                                        |
+| `sx`              | `SxProps`                                          | [The sx prop is a shortcut for defining custom styles that has access to the theme.](https://mui.com/system/getting-started/the-sx-prop/) |
 
 Props marked with \* are required.
 
 ### Usage without TextField and with Context
 
-If you want to use the MuiKeyboard component without the TextField and manage the input value using context, follow these steps:
+If you want to use the MuiKeyboard component without a built-in TextField and manage the input value using context, follow these steps:
 
-1. Wrap your application with the `InputValueProvider`:
+1. Wrap your application with the `MuiKeyboardProvider`:
 
 ```tsx
 // index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { InputValueProvider } from 'react-material-ui-keyboard';
+import { MuiKeyboardProvider } from 'react-material-ui-keyboard';
+import { russianButtons } from 'react-material-ui-keyboard';
 
 ReactDOM.render(
-  <InputValueProvider>
+  <MuiKeyboardProvider
+    firstLanguage={russianButtons}
+    sx={{ display: 'flex', justifyContent: 'center', mt: 50 }}
+    keyboardWidth={'900px'}
+  >
     <App />
-  </InputValueProvider>,
+  </MuiKeyboardProvider>,
   document.getElementById('root')
 );
 ```
 
-2. Update your component where you use MuiKeyboard to use context:
+2. Then yo may use the `useMuiKeyboard` hook in any another component to access the input value and setter from the context.
 
 ```tsx
-import React, { ChangeEvent } from 'react';
-import { MuiKeyboard } from 'react-material-ui-keyboard';
-import { numbers, russianButtons, englishButtons } from 'path_to_your_button_data';
-import { useInputValue } from 'react-material-ui-keyboard';
+// App.tsx
+import React from 'react';
+import { TextField } from '@mui/material';
+import { useMuiKeyboard } from 'react-material-ui-keyboard';
 
 const App = () => {
-  const [checked, setChecked] = React.useState(false);
-  const { inputValue, setInputValue } = useInputValue();
+  const { inputValue, slideEffect } = useMuiKeyboard();
   return (
-    <MuiKeyboard
-      setInputValue={setInputValue}
-      numbers={numbers}
-      firstLanguage={russianButtons}
-      secondLanguage={englishButtons}
-      secondLangLabel="EN"
-      firstLangLabel="RU"
-      keyboardWidth={'900px'}
-      labelButton
-      reverseButton
-    />
+    <TextField value={inputValue} onClick={slideEffect} label="Click!">
+      Hello
+    </TextField>
   );
 };
 
 export default App;
-```
-
-3. Then yo may use the `useInputValue` hook in any another component to access the input value and setter from the context.
-
-```tsx
-import React from 'react';
-import { TextField } from '@mui/material';
-import { useInputValue } from 'react-material-ui-keyboard';
-
-const Textfield = () => {
-  const { inputValue, setInputValue } = useInputValue();
-  return <TextField value={inputValue} label="Click!"></TextField>;
-};
-
-export default Textfield;
 ```
 
 ![Example_context](./screenshots/keyboard_context.png)
