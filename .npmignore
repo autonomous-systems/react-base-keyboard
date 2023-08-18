@@ -1,0 +1,26 @@
+# dependencies
+/node_modules
+
+#files
+__tests__
+example
+screenshots
+src
+
+#ignores
+.gitignore
+.npmignore
+
+#configs
+.prettierrc
+jest.config.json
+tsconfig.jest.json
+tsconfig.json
+.git
+.npmrc
+
+# misc
+.DS_Store
+
+#Errors
+yarn-error.log*

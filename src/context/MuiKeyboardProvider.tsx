@@ -21,7 +21,7 @@ interface ContextProps {
   firstLangLabel?: string;
   keyboardWidth?: string | number;
   buttonSize?: ButtonProps['size'];
-  labelButton?: boolean;
+  labelLangButton?: boolean;
   reverseButton?: boolean;
   sx?: SxProps;
 }
@@ -40,7 +40,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
   firstLangLabel,
   keyboardWidth,
   buttonSize,
-  labelButton,
+  labelLangButton,
   reverseButton,
   sx,
 }) => {
@@ -66,7 +66,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
         firstLangLabel={firstLangLabel}
         keyboardWidth={keyboardWidth}
         buttonSize={buttonSize}
-        labelButton={labelButton}
+        labelLangButton={labelLangButton}
         reverseButton={reverseButton}
         sx={sx}
       />

@@ -1,9 +1,12 @@
 # dependencies
 /node_modules
 
+#builds
 /dist
 
 # misc
 .DS_Store
+.npmrc
 
+#Errors
 yarn-error.log*
