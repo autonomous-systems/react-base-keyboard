@@ -45,7 +45,7 @@
 ```jsx
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { MuiKeyboard } from 'react-material-ui-keyboard';
+import { MuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 import { russianButtons, englishButtons, numbers } from 'путь_к_вашим_клавишам';
 
 const App = () => {
@@ -121,8 +121,8 @@ export default App;
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { MuiKeyboardProvider } from 'react-material-ui-keyboard';
-import { russianButtons } from 'react-material-ui-keyboard';
+import { MuiKeyboardProvider } from '@autonomous-systems/react-mui-keyboard';
+import { russianButtons } from '@autonomous-systems/react-mui-keyboard';
 
 ReactDOM.render(
   <MuiKeyboardProvider
@@ -142,7 +142,7 @@ ReactDOM.render(
 // App.tsx
 import React from 'react';
 import { TextField } from '@mui/material';
-import { useMuiKeyboard } from 'react-material-ui-keyboard';
+import { useMuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 
 const App = () => {
   const { inputValue, slideEffect } = useMuiKeyboard();

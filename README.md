@@ -47,7 +47,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```tsx
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { MuiKeyboard } from 'react-material-ui-keyboard';
+import { MuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 import { russianButtons, englishButtons, numbers } from 'path_to_your_button_data';
 
 const App = () => {
@@ -127,8 +127,8 @@ If you want to use the MuiKeyboard component without a built-in TextField and ma
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { MuiKeyboardProvider } from 'react-material-ui-keyboard';
-import { russianButtons } from 'react-material-ui-keyboard';
+import { MuiKeyboardProvider } from '@autonomous-systems/react-mui-keyboard';
+import { russianButtons } from '@autonomous-systems/react-mui-keyboard';
 
 ReactDOM.render(
   <MuiKeyboardProvider
@@ -148,7 +148,7 @@ ReactDOM.render(
 // App.tsx
 import React from 'react';
 import { TextField } from '@mui/material';
-import { useMuiKeyboard } from 'react-material-ui-keyboard';
+import { useMuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 
 const App = () => {
   const { inputValue, slideEffect } = useMuiKeyboard();
