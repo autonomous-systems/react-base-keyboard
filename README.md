@@ -19,19 +19,13 @@ With this application, users can input text using the virtual keyboard, select t
 
 ## Installation
 
-1. Clone the repository using the command:
-   `git clone <repository URL>`
-2. Navigate to the project folder:
-   `cd on-screen-keyboard-app`
-3. Install the dependencies:
-   `yarn`
+Install with npm:
 
-## Running
+`npm install @autonomous-systems/react-mui-keyboard`
 
-Start the application using the command:
-`yarn start`
+Install with yarn:
 
-This will open a web application with a virtual on-screen keyboard.
+`yarn add @autonomous-systems/react-mui-keyboard`
 
 ## Usage
 
