@@ -1,6 +1,6 @@
 {
   "name": "@autonomous-systems/react-mui-keyboard",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/autonomous-systems/react-mui-keyboard.git"
@@ -16,14 +16,7 @@
     "@emotion/styled": "11.6.0",
     "@mui/core": "^5.0.0-alpha.54",
     "@mui/icons-material": "5.1.1",
-    "@mui/material": "5.1.1",
-    "@types/react": "17.0.29",
-    "@types/react-dom": "17.0.9",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-scripts": "^4.0.3",
-    "typescript": "4.4.4",
-    "web-vitals": "2.1.2"
+    "@mui/material": "5.1.1"
   },
   "scripts": {
     "build": "rm -rf dist/ && yarn build:esm && yarn build:cjs",
@@ -33,8 +26,10 @@
     "prepare": "yarn build"
   },
   "peerDependencies": {
-    "react": ">=17.0.2",
-    "react-dom": ">=17.0.2"
+    "react": "17.0.2 || ^18.0.0",
+    "react-dom": "17.0.2 || ^18.0.0",
+    "@types/react": "17.0.29 || ^18.0.0",
+    "@types/react-dom": "17.0.9 || ^18.0.0"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -60,6 +55,13 @@
     ]
   },
   "devDependencies": {
+    "@types/react": "17.0.29",
+    "@types/react-dom": "17.0.9",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-scripts": "^4.0.3",
+    "typescript": "4.4.4",
+    "web-vitals": "2.1.2",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^12.1.5",
     "@types/jest": "^29.5.3",

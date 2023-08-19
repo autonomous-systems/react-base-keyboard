@@ -9,6 +9,7 @@ interface MuiKeyboardContextProps {
 }
 
 interface ContextProps {
+  children?: React.ReactNode;
   textField?: React.ReactNode;
   slide?: boolean;
   direction?: SlideProps['direction'];
