@@ -19,6 +19,16 @@ With this application, users can input text using the virtual keyboard, select t
 
 ## Installation
 
+1. In the same directory as your package.json file, create or edit an .npmrc file to include a line specifying GitHub Packages URL and the namespace where the package is hosted.
+
+   `@autonomous-systems:registry=https://npm.pkg.github.com`
+
+2. Authenticate to GitHub Packages. You must use a personal access token (classic) with the appropriate scopes to publish and install packages in GitHub Packages
+
+   `//npm.pkg.github.com/:_authToken=TOKEN`
+
+### Then:
+
 Install with npm:
 
 `npm install @autonomous-systems/react-mui-keyboard`
