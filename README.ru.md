@@ -166,4 +166,6 @@ const App = () => {
 export default App;
 ```
 
+Если вы хотите, чтобы ваш компонент (например, кнопка) мог только закрывать клавиатуру, используйте `onClick={() => slideEffect(false)}`
+
 ![Example_context](./screenshots/keyboard_context.png)

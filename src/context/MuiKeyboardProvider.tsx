@@ -5,7 +5,7 @@ import { SxProps } from '@mui/system';
 
 interface MuiKeyboardContextProps {
   inputValue: string;
-  slideEffect: () => void;
+  slideEffect: (a: boolean) => void;
 }
 
 interface ContextProps {
@@ -47,8 +47,12 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [checked, setChecked] = useState(false);
-  const slideEffect = () => {
-    setChecked((pr) => !pr);
+  const slideEffect = (onlyFalse = true) => {
+    if (onlyFalse) {
+      setChecked((pr) => !pr);
+    } else {
+      setChecked(false);
+    }
   };
 
   return (

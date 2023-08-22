@@ -68,6 +68,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                 firstLangLabel={firstLangLabel}
                 keyboardWidth={keyboardWidth}
                 buttonSize={buttonSize}
+                labelLangButton={labelLangButton}
+                reverseButton={reverseButton}
               />
             </Box>
           </Slide>

@@ -163,7 +163,7 @@ import { useMuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 const App = () => {
   const { inputValue, slideEffect } = useMuiKeyboard();
   return (
-    <TextField value={inputValue} onClick={slideEffect} label="Click!">
+    <TextField value={inputValue} onClick={() => slideEffect(true)} label="Click!">
       Hello
     </TextField>
   );
@@ -171,5 +171,7 @@ const App = () => {
 
 export default App;
 ```
+
+If you want your component (for example, a button) to only be able to close the keyboard, use `onClick={() => slideEffect(false)}`
 
 ![Example_context](./screenshots/keyboard_context.png)
