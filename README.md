@@ -161,9 +161,13 @@ import { TextField } from '@mui/material';
 import { useMuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 
 const App = () => {
-  const { inputValue, slideEffect } = useMuiKeyboard();
+  const { inputValue, keyboardFeature } = useMuiKeyboard();
   return (
-    <TextField value={inputValue} onClick={() => slideEffect(true)} label="Click!">
+    <TextField
+      value={inputValue}
+      onClick={() => keyboardFeature({ slideEffect: true })}
+      label="Click!"
+    >
       Hello
     </TextField>
   );
@@ -172,6 +176,8 @@ const App = () => {
 export default App;
 ```
 
-If you want your component (for example, a button) to only be able to close the keyboard, use `onClick={() => slideEffect(false)}`
+If you want your component (for example, a button) to only be able to close the keyboard, use `onClick={() => keyboardFeature({ slideEffect: false })}`
 
 ![Example_context](./screenshots/keyboard_context.png)
+
+If you want to reset the inputValue, but don't want to do it with a button on the keyboard, you can use any other button with `onClick={() => keyboardFeature({ resetText: true })}`

@@ -5,7 +5,7 @@ import { SxProps } from '@mui/system';
 
 interface MuiKeyboardContextProps {
   inputValue: string;
-  slideEffect: (a: boolean) => void;
+  keyboardFeature: (options: { resetText?: boolean; slideEffect?: boolean }) => void;
 }
 
 interface ContextProps {
@@ -47,8 +47,13 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [checked, setChecked] = useState(false);
-  const slideEffect = (onlyFalse = true) => {
-    if (onlyFalse) {
+  const keyboardFeature = (options: { resetText?: boolean; slideEffect?: boolean } = {}) => {
+    const { resetText, slideEffect } = options;
+    if (resetText) {
+      setInputValue(() => '');
+      return;
+    }
+    if (slideEffect) {
       setChecked((pr) => !pr);
     } else {
       setChecked(false);
@@ -56,7 +61,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
   };
 
   return (
-    <MuiKeyboardContext.Provider value={{ inputValue, slideEffect }}>
+    <MuiKeyboardContext.Provider value={{ inputValue, keyboardFeature }}>
       {children}
       <MuiKeyboard
         setInputValue={setInputValue}

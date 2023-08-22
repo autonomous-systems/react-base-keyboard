@@ -155,9 +155,13 @@ import { TextField } from '@mui/material';
 import { useMuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
 
 const App = () => {
-  const { inputValue, slideEffect } = useMuiKeyboard();
+  const { inputValue, keyboardFeature } = useMuiKeyboard();
   return (
-    <TextField value={inputValue} onClick={slideEffect} label="Click!">
+    <TextField
+      value={inputValue}
+      onClick={() => keyboardFeature({ slideEffect: false })}
+      label="Click!"
+    >
       Hello
     </TextField>
   );
@@ -166,6 +170,8 @@ const App = () => {
 export default App;
 ```
 
-Если вы хотите, чтобы ваш компонент (например, кнопка) мог только закрывать клавиатуру, используйте `onClick={() => slideEffect(false)}`
+Если вы хотите, чтобы ваш компонент (например, кнопка) мог только закрывать клавиатуру, используйте `onClick={() => keyboardFeature({ slideEffect: false })}`
 
 ![Example_context](./screenshots/keyboard_context.png)
+
+Если вы хотите обнулить значение inputValue, но не хотите это делать с помощью кнопки на клавиатуре, вы можете использовать любую другую кнопку с помощью `onClick={() => keyboardFeature({ resetText: true })}`
