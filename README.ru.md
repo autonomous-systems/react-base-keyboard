@@ -15,25 +15,17 @@
 
 С помощью этого приложения, пользователи могут вводить текст на виртуальной клавиатуре, выбирать язык раскладки клавиатуры (русский или английский), использовать клавиши Caps Lock, Backspace, пробел и Enter.
 
-## Установка
+## Установка:
 
-1. В том же каталоге, что и ваш файл package.json, создайте или отредактируйте файл .npmrc, чтобы включить строку, указывающую URL-адрес пакетов GitHub и пространство имен, в котором размещен пакет.
-
-   `@autonomous-systems:registry=https://npm.pkg.github.com`
-
-2. Пройдите аутентификацию в пакетах GitHub. Вы должны использовать личный токен доступа (классический) с соответствующими областями действия для публикации и установки пакетов в пакетах GitHub.
-
-   `//npm.pkg.github.com/:_authToken=TOKEN`
-
-### Затем:
+[![NPM](https://nodei.co/npm/@autosys/react-mui-keyboard.png?downloads=true&stars=true)](https://www.npmjs.com/package/@autosys/react-mui-keyboard)
 
 Установка с помощью npm:
 
-`npm install @autonomous-systems/react-mui-keyboard`
+`npm install @autosys/react-mui-keyboard`
 
 Установка с помощью yarn:
 
-`yarn add @autonomous-systems/react-mui-keyboard`
+`yarn add @autosys/react-mui-keyboard`
 
 ## Использование
 
@@ -55,7 +47,7 @@
 ```jsx
 import React, { useState } from 'react';
 import { TextField } from '@mui/material';
-import { MuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
+import { MuiKeyboard } from '@autosys/react-mui-keyboard';
 import { russianButtons, englishButtons, numbers } from 'путь_к_вашим_клавишам';
 
 const App = () => {
@@ -131,8 +123,8 @@ export default App;
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import { MuiKeyboardProvider } from '@autonomous-systems/react-mui-keyboard';
-import { russianButtons } from '@autonomous-systems/react-mui-keyboard';
+import { MuiKeyboardProvider } from '@autosys/react-mui-keyboard';
+import { russianButtons } from '@autosys/react-mui-keyboard';
 
 ReactDOM.render(
   <MuiKeyboardProvider
@@ -152,7 +144,7 @@ ReactDOM.render(
 // App.tsx
 import React from 'react';
 import { TextField } from '@mui/material';
-import { useMuiKeyboard } from '@autonomous-systems/react-mui-keyboard';
+import { useMuiKeyboard } from '@autosys/react-mui-keyboard';
 
 const App = () => {
   const { inputValue, keyboardFeature } = useMuiKeyboard();
