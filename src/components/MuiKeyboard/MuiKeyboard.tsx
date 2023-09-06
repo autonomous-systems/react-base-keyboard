@@ -19,6 +19,7 @@ interface MuiProps {
   labelLangButton?: boolean;
   reverseButton?: boolean;
   sx?: SxProps;
+  timeout?: SlideProps['timeout'];
 }
 
 export const MuiKeyboard: React.FC<MuiProps> = ({
@@ -37,6 +38,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   labelLangButton,
   reverseButton,
   sx,
+  timeout,
 }): JSX.Element => {
   const handleKeyPress = (key: string) => {
     if (key === 'backspace') {
@@ -57,7 +59,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
       <Box sx={sx}>
         {textField}
         {slide && (
-          <Slide direction={direction} in={checked} mountOnEnter unmountOnExit>
+          <Slide direction={direction} in={checked} timeout={timeout} mountOnEnter unmountOnExit>
             <Box sx={{ display: 'flex', mt: '10px', justifyContent: 'center' }}>
               <OnScreenKeyboard
                 onKeyPress={handleKeyPress}

@@ -25,6 +25,7 @@ interface ContextProps {
   labelLangButton?: boolean;
   reverseButton?: boolean;
   sx?: SxProps;
+  timeout?: SlideProps['timeout'];
 }
 
 const MuiKeyboardContext = createContext<MuiKeyboardContextProps | undefined>(undefined);
@@ -44,6 +45,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
   labelLangButton,
   reverseButton,
   sx,
+  timeout,
 }) => {
   const [inputValue, setInputValue] = useState('');
   const [checked, setChecked] = useState(false);
@@ -79,6 +81,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
         labelLangButton={labelLangButton}
         reverseButton={reverseButton}
         sx={sx}
+        timeout={timeout}
       />
     </MuiKeyboardContext.Provider>
   );
