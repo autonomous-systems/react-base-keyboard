@@ -1,9 +1,9 @@
 {
   "include": ["src"],
-  "exclude": ["dist", "node_modules", "../example"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     "module": "esnext",
-    "lib": ["es5", "es2015", "es2016", "dom", "esnext"],
+    "lib": ["es5", "es2015", "es2016", "es2020", "dom", "esnext"],
     "importHelpers": true,
     "declaration": true,
     "sourceMap": true,
@@ -19,5 +19,5 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
 }
