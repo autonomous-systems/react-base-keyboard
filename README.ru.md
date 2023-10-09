@@ -108,6 +108,7 @@ export default App;
 | `buttonSize`      | `ButtonProps <"small" \| "medium" \| "large">`                              | Размер кнопки.                                                                                                                                                            |
 | `labelLangButton` | `boolean`                                                                   | Кнопка переключения языков.                                                                                                                                               |
 | `reverseButton`   | `boolean`                                                                   | Кнопка сброса текста.                                                                                                                                                     |
+| `singlyBack`      | `boolean`                                                                   | Если `true` кнопка backspace отдельно от блока c цифрами.                                                                                                                 |
 | `sx`              | `SxProps`                                                                   | [sx prop - это ярлык для определения пользовательских стилей, который имеет доступ к теме.](https://mui.com/system/getting-started/the-sx-prop/)                          |
 | `timeout`         | `SlideProps <number \| { appear?: number, enter?: number, exit?: number }>` | [Продолжительность перехода в миллисекундах. Вы можете указать единый тайм-аут для всех переходов или индивидуально для объекта.](https://mui.com/material-ui/api/slide/) |
 
@@ -135,7 +136,7 @@ ReactDOM.render(
   >
     <App />
   </MuiKeyboardProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
 
