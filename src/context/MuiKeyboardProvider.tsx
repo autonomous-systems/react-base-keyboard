@@ -24,6 +24,7 @@ interface ContextProps {
   buttonSize?: ButtonProps['size'];
   labelLangButton?: boolean;
   reverseButton?: boolean;
+  singlyBack?: boolean;
   sx?: SxProps;
   timeout?: SlideProps['timeout'];
 }
@@ -44,6 +45,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
   buttonSize,
   labelLangButton,
   reverseButton,
+  singlyBack,
   sx,
   timeout,
 }) => {
@@ -80,6 +82,7 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
         buttonSize={buttonSize}
         labelLangButton={labelLangButton}
         reverseButton={reverseButton}
+        singlyBack={singlyBack}
         sx={sx}
         timeout={timeout}
       />

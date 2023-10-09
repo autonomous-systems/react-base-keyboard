@@ -18,6 +18,7 @@ interface MuiProps {
   buttonSize?: ButtonProps['size'];
   labelLangButton?: boolean;
   reverseButton?: boolean;
+  singlyBack?: boolean;
   sx?: SxProps;
   timeout?: SlideProps['timeout'];
 }
@@ -37,6 +38,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   buttonSize,
   labelLangButton,
   reverseButton,
+  singlyBack,
   sx,
   timeout,
 }): JSX.Element => {
@@ -72,6 +74,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                 buttonSize={buttonSize}
                 labelLangButton={labelLangButton}
                 reverseButton={reverseButton}
+                singlyBack={singlyBack}
               />
             </Box>
           </Slide>
@@ -88,6 +91,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
             buttonSize={buttonSize}
             labelLangButton={labelLangButton}
             reverseButton={reverseButton}
+            singlyBack={singlyBack}
           />
         )}
       </Box>

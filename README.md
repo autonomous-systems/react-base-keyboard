@@ -114,6 +114,7 @@ export default App;
 | `buttonSize`      | `ButtonProps <"small" \| "medium" \| "large">`                              | Button size.                                                                                                                                                                      |
 | `labelLangButton` | `boolean`                                                                   | Language switch button.                                                                                                                                                           |
 | `reverseButton`   | `boolean`                                                                   | Text reset button.                                                                                                                                                                |
+| `singlyBack`      | `boolean`                                                                   | If `true`, the backspace button is separate from the block with numbers.                                                                                                          |
 | `sx`              | `SxProps`                                                                   | [The sx prop is a shortcut for defining custom styles that has access to the theme.](https://mui.com/system/getting-started/the-sx-prop/)                                         |
 | `timeout`         | `SlideProps <number \| { appear?: number, enter?: number, exit?: number }>` | [The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.](https://mui.com/material-ui/api/slide/) |
 
@@ -141,7 +142,7 @@ ReactDOM.render(
   >
     <App />
   </MuiKeyboardProvider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
 
