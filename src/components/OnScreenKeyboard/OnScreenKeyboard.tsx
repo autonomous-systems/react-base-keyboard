@@ -112,23 +112,33 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                   <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
                 </Box>
               )}
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: numbers ? '' : 'end' }}>
-                {numbers &&
-                  numbers.map((key) => (
-                    <KeyboardButton
-                      key={key}
-                      label={key}
-                      onClick={() => handleButtonClick(key)}
-                      variant="outlined"
-                      margin={betweenButtons}
-                    />
-                  ))}
-                {numbers && !singlyBack && (
-                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
-                )}
-                {!numbers && (
-                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
-                )}
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Box
+                  sx={{
+                    display: 'inline-grid',
+                    gridTemplateColumns: 'repeat(5, 1fr)',
+                    gridTemplateRows: 'repeat(3, 1fr)',
+                    gap: '8px',
+                    p: '8px',
+                  }}
+                >
+                  {numbers &&
+                    numbers.map((key) => (
+                      <KeyboardButton
+                        key={key}
+                        label={key}
+                        onClick={() => handleButtonClick(key)}
+                        variant="outlined"
+                        margin={betweenButtons}
+                      />
+                    ))}
+                  {numbers && !singlyBack && (
+                    <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                  )}
+                  {!numbers && (
+                    <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                  )}
+                </Box>
               </Box>
             </>
           )}
