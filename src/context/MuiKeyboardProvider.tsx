@@ -27,7 +27,9 @@ interface ContextProps {
   singlyBack?: boolean;
   labelLetterButton?: boolean;
   betweenButtons?: string | number;
-  sx?: SxProps;
+  numbersColumns?: string;
+  numbersRows?: string;
+  allKeyboardStyle?: SxProps;
   timeout?: SlideProps['timeout'];
 }
 
@@ -50,7 +52,9 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
   singlyBack,
   labelLetterButton,
   betweenButtons,
-  sx,
+  numbersColumns,
+  numbersRows,
+  allKeyboardStyle,
   timeout,
 }) => {
   const [inputValue, setInputValue] = useState('');
@@ -89,7 +93,9 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
         singlyBack={singlyBack}
         labelLetterButton={labelLetterButton}
         betweenButtons={betweenButtons}
-        sx={sx}
+        numbersColumns={numbersColumns}
+        numbersRows={numbersRows}
+        allKeyboardStyle={allKeyboardStyle}
         timeout={timeout}
       />
     </MuiKeyboardContext.Provider>

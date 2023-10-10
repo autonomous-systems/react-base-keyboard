@@ -25,6 +25,8 @@ interface OnScreenKeyboardProps {
   singlyBack?: boolean;
   labelLetterButton?: boolean;
   betweenButtons?: string | number;
+  numbersColumns?: string;
+  numbersRows?: string;
 }
 
 export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
@@ -41,6 +43,8 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
   singlyBack,
   labelLetterButton,
   betweenButtons,
+  numbersColumns = '5',
+  numbersRows = '3',
 }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
   const [language, setIsLanguage] = useState(true);
@@ -112,23 +116,33 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                   <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
                 </Box>
               )}
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: numbers ? '' : 'end' }}>
-                {numbers &&
-                  numbers.map((key) => (
-                    <KeyboardButton
-                      key={key}
-                      label={key}
-                      onClick={() => handleButtonClick(key)}
-                      variant="outlined"
-                      margin={betweenButtons}
-                    />
-                  ))}
-                {numbers && !singlyBack && (
-                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
-                )}
-                {!numbers && (
-                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
-                )}
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Box
+                  sx={{
+                    display: 'inline-grid',
+                    gridTemplateColumns: `repeat(${numbersColumns}, 1fr)`,
+                    gridTemplateRows: `repeat(${numbersRows}, 1fr)`,
+                    gap: '8px',
+                    p: '8px',
+                  }}
+                >
+                  {numbers &&
+                    numbers.map((key) => (
+                      <KeyboardButton
+                        key={key}
+                        label={key}
+                        onClick={() => handleButtonClick(key)}
+                        variant="outlined"
+                        margin={betweenButtons}
+                      />
+                    ))}
+                  {numbers && !singlyBack && (
+                    <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                  )}
+                  {!numbers && (
+                    <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                  )}
+                </Box>
               </Box>
             </>
           )}
