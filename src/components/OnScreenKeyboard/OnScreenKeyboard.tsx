@@ -23,6 +23,7 @@ interface OnScreenKeyboardProps {
   labelLangButton?: boolean;
   reverseButton?: boolean;
   singlyBack?: boolean;
+  labelLetterButton?: boolean;
 }
 
 export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
@@ -37,9 +38,11 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
   labelLangButton,
   reverseButton,
   singlyBack,
+  labelLetterButton,
 }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
   const [language, setIsLanguage] = useState(true);
+  const [isLettersMode, setIsLettersMode] = useState(true);
 
   useEffect(() => {
     const handleKeyUp = (event: KeyboardEvent) => {
@@ -90,39 +93,107 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
     }
   };
 
+  const handleLettersClick = (key: string) => {
+    if (key === 'letters') {
+      setIsLettersMode((prev) => !prev);
+    }
+  };
+
   return (
     <div style={{ width: keyboardWidth ? keyboardWidth : '900px' }}>
-      {numbers && singlyBack && (
-        <Box sx={{ display: 'flex', justifyContent: 'end' }}>
-          <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+      {labelLetterButton ? (
+        <>
+          {!isLettersMode && (
+            <>
+              {numbers && singlyBack && (
+                <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                </Box>
+              )}
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: numbers ? '' : 'end' }}>
+                {numbers &&
+                  numbers.map((key) => (
+                    <KeyboardButton
+                      key={key}
+                      label={key}
+                      onClick={() => handleButtonClick(key)}
+                      variant="outlined"
+                    />
+                  ))}
+                {numbers && !singlyBack && (
+                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                )}
+                {!numbers && (
+                  <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+                )}
+              </Box>
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          {numbers && singlyBack && (
+            <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+              <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+            </Box>
+          )}
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: numbers ? '' : 'end',
+            }}
+          >
+            {numbers &&
+              numbers.map((key) => (
+                <KeyboardButton
+                  key={key}
+                  label={key}
+                  onClick={() => handleButtonClick(key)}
+                  variant="outlined"
+                />
+              ))}
+            {numbers && !singlyBack && (
+              <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+            )}
+            {!numbers && <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />}
+          </Box>{' '}
+        </>
+      )}
+      {labelLetterButton ? (
+        <>
+          {isLettersMode && (
+            <>
+              <Box sx={{ display: 'flex', justifyContent: 'end' }}>
+                <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
+              </Box>
+              <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+                {layout &&
+                  layout.map((key) => (
+                    <KeyboardButton
+                      key={key}
+                      label={isCapsLockOn ? key.toUpperCase() : key}
+                      onClick={() => handleButtonClick(key)}
+                      variant="outlined"
+                    />
+                  ))}
+              </Box>
+            </>
+          )}
+        </>
+      ) : (
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+          {layout &&
+            layout.map((key) => (
+              <KeyboardButton
+                key={key}
+                label={isCapsLockOn ? key.toUpperCase() : key}
+                onClick={() => handleButtonClick(key)}
+                variant="outlined"
+              />
+            ))}
         </Box>
       )}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: numbers ? '' : 'end' }}>
-        {numbers &&
-          numbers.map((key) => (
-            <KeyboardButton
-              key={key}
-              label={key}
-              onClick={() => handleButtonClick(key)}
-              variant="outlined"
-            />
-          ))}
-        {numbers && !singlyBack && (
-          <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />
-        )}
-        {!numbers && <KeyboardButton onClick={handleBackspaceClick} children={<Backspace />} />}
-      </Box>
-      <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
-        {layout &&
-          layout.map((key) => (
-            <KeyboardButton
-              key={key}
-              label={isCapsLockOn ? key.toUpperCase() : key}
-              onClick={() => handleButtonClick(key)}
-              variant="outlined"
-            />
-          ))}
-      </Box>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Box>
           {labelLangButton && (
@@ -134,6 +205,12 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
               }
               onClick={() => handleLanguageClick('language')}
               startIcon={<Language />}
+            />
+          )}
+          {labelLetterButton && (
+            <KeyboardButton
+              label={isLettersMode ? '123' : 'ABC'}
+              onClick={() => handleLettersClick('letters')}
             />
           )}
           <KeyboardIconButton
