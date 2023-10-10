@@ -119,7 +119,7 @@ export default App;
 | `betweenButtons`    | `string \| number`                                                          | Distance between buttons.                                                                                                                                                         |
 | `numbersColumns`    | `string`                                                                    | The number of columns for numeric keypad when it is separate from letters.                                                                                                        |
 | `numbersRows`       | `string`                                                                    | The number of rows for numeric keypad when it is separate from letters.                                                                                                           |
-| `sx`                | `SxProps`                                                                   | [The sx prop is a shortcut for defining custom styles that has access to the theme.](https://mui.com/system/getting-started/the-sx-prop/)                                         |
+| `allKeyboardStyle`  | `SxProps`                                                                   | [The sx prop is a shortcut for defining custom styles that has access to the theme.](https://mui.com/system/getting-started/the-sx-prop/)                                         |
 | `timeout`           | `SlideProps <number \| { appear?: number, enter?: number, exit?: number }>` | [The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.](https://mui.com/material-ui/api/slide/) |
 
 Props marked with \* are required.

@@ -113,7 +113,7 @@ export default App;
 | `betweenButtons`    | `boolean \| number`                                                         | Расстояние между кнопками.                                                                                                                                                |
 | `numbersColumns`    | `string`                                                                    | Количество столбцов для цифровой клавиатуры, когда она отделены от букв.                                                                                                  |
 | `numbersRows`       | `string`                                                                    | Количество строк для цифровой клавиатуры, когда она отделена от букв.                                                                                                     |
-| `sx`                | `SxProps`                                                                   | [sx prop - это ярлык для определения пользовательских стилей, который имеет доступ к теме.](https://mui.com/system/getting-started/the-sx-prop/)                          |
+| `allKeyboardStyle`  | `SxProps`                                                                   | [sx prop - это ярлык для определения пользовательских стилей, который имеет доступ к теме.](https://mui.com/system/getting-started/the-sx-prop/)                          |
 | `timeout`           | `SlideProps <number \| { appear?: number, enter?: number, exit?: number }>` | [Продолжительность перехода в миллисекундах. Вы можете указать единый тайм-аут для всех переходов или индивидуально для объекта.](https://mui.com/material-ui/api/slide/) |
 
 Реквизиты, отмеченные символом \*, обязательны для использования.

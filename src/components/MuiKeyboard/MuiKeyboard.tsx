@@ -23,7 +23,7 @@ interface MuiProps {
   betweenButtons?: string | number;
   numbersColumns?: string;
   numbersRows?: string;
-  sx?: SxProps;
+  allKeyboardStyle?: SxProps;
   timeout?: SlideProps['timeout'];
 }
 
@@ -47,7 +47,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   betweenButtons,
   numbersColumns,
   numbersRows,
-  sx,
+  allKeyboardStyle,
   timeout,
 }): JSX.Element => {
   const handleKeyPress = (key: string) => {
@@ -66,7 +66,7 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
 
   return (
     <>
-      <Box sx={sx}>
+      <Box sx={allKeyboardStyle}>
         {textField}
         {slide && (
           <Slide direction={direction} in={checked} timeout={timeout} mountOnEnter unmountOnExit>
