@@ -24,6 +24,7 @@ interface OnScreenKeyboardProps {
   reverseButton?: boolean;
   singlyBack?: boolean;
   labelLetterButton?: boolean;
+  betweenButtons?: string | number;
 }
 
 export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
@@ -39,6 +40,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
   reverseButton,
   singlyBack,
   labelLetterButton,
+  betweenButtons,
 }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
   const [language, setIsLanguage] = useState(true);
@@ -118,6 +120,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                       label={key}
                       onClick={() => handleButtonClick(key)}
                       variant="outlined"
+                      margin={betweenButtons}
                     />
                   ))}
                 {numbers && !singlyBack && (
@@ -151,6 +154,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                   label={key}
                   onClick={() => handleButtonClick(key)}
                   variant="outlined"
+                  margin={betweenButtons}
                 />
               ))}
             {numbers && !singlyBack && (
@@ -175,6 +179,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                       label={isCapsLockOn ? key.toUpperCase() : key}
                       onClick={() => handleButtonClick(key)}
                       variant="outlined"
+                      margin={betweenButtons}
                     />
                   ))}
               </Box>
@@ -190,6 +195,7 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                 label={isCapsLockOn ? key.toUpperCase() : key}
                 onClick={() => handleButtonClick(key)}
                 variant="outlined"
+                margin={betweenButtons}
               />
             ))}
         </Box>

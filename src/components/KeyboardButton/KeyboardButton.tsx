@@ -4,6 +4,7 @@ import { ButtonProps } from '@mui/material/Button';
 
 interface KeyboardButtonProps extends ButtonProps {
   label?: string;
+  margin?: string | number;
   width?: string;
   onClick?: () => void;
 }
@@ -11,6 +12,7 @@ interface KeyboardButtonProps extends ButtonProps {
 export const KeyboardButton: React.FC<KeyboardButtonProps> = ({
   label,
   onClick,
+  margin,
   width,
   size,
   color,
@@ -29,7 +31,7 @@ export const KeyboardButton: React.FC<KeyboardButtonProps> = ({
       disabled={disabled}
       fullWidth={fullWidth}
       startIcon={startIcon}
-      sx={{ m: '5px', width: { width }, textTransform: 'none' }}
+      sx={{ m: { margin }, width: { width }, textTransform: 'none' }}
     >
       {label}
       {children}
