@@ -21,6 +21,8 @@ interface MuiProps {
   singlyBack?: boolean;
   labelLetterButton?: boolean;
   betweenButtons?: string | number;
+  numbersColumns?: string;
+  numbersRows?: string;
   sx?: SxProps;
   timeout?: SlideProps['timeout'];
 }
@@ -43,6 +45,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
   singlyBack,
   labelLetterButton,
   betweenButtons,
+  numbersColumns,
+  numbersRows,
   sx,
   timeout,
 }): JSX.Element => {
@@ -81,6 +85,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
                 singlyBack={singlyBack}
                 labelLetterButton={labelLetterButton}
                 betweenButtons={betweenButtons}
+                numbersColumns={numbersColumns}
+                numbersRows={numbersRows}
               />
             </Box>
           </Slide>
@@ -100,6 +106,8 @@ export const MuiKeyboard: React.FC<MuiProps> = ({
             singlyBack={singlyBack}
             labelLetterButton={labelLetterButton}
             betweenButtons={betweenButtons}
+            numbersColumns={numbersColumns}
+            numbersRows={numbersRows}
           />
         )}
       </Box>

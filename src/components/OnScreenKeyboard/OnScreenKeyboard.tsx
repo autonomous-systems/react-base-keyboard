@@ -25,6 +25,8 @@ interface OnScreenKeyboardProps {
   singlyBack?: boolean;
   labelLetterButton?: boolean;
   betweenButtons?: string | number;
+  numbersColumns?: string;
+  numbersRows?: string;
 }
 
 export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
@@ -41,6 +43,8 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
   singlyBack,
   labelLetterButton,
   betweenButtons,
+  numbersColumns = '5',
+  numbersRows = '3',
 }) => {
   const [isCapsLockOn, setIsCapsLockOn] = useState(true);
   const [language, setIsLanguage] = useState(true);
@@ -116,8 +120,8 @@ export const OnScreenKeyboard: React.FC<OnScreenKeyboardProps> = ({
                 <Box
                   sx={{
                     display: 'inline-grid',
-                    gridTemplateColumns: 'repeat(5, 1fr)',
-                    gridTemplateRows: 'repeat(3, 1fr)',
+                    gridTemplateColumns: `repeat(${numbersColumns}, 1fr)`,
+                    gridTemplateRows: `repeat(${numbersRows}, 1fr)`,
                     gap: '8px',
                     p: '8px',
                   }}
