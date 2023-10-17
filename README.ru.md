@@ -173,3 +173,18 @@ export default App;
 ![Example_context](./screenshots/keyboard_context.png)
 
 Если вы хотите обнулить значение inputValue, но не хотите это делать с помощью кнопки на клавиатуре, вы можете использовать любую другую кнопку с помощью `onClick={() => keyboardFeature({ resetText: true })}`
+
+## Примеры:
+
+### singlyBack and betweenButtons
+
+Если вы хотите, чтобы клавиша backspace была отдельной, используйте свойство `singlyBack`. Вы также можете использовать свойство `betweenButtons`, чтобы увеличить расстояние между клавишами.
+
+![Example_singlyBack](./screenshots/singlyBack_betweenButtons.png)
+
+### labelLetterButton
+
+Если вы хотите использовать цифры отдельно от букв, то используйте свойтсво `labelLetterButton`. Вы также можете использовать свойства `numberColumns` и `numbersRows` для изменения столбцов и строк в числовом блоке.
+
+![Example_labelLetter](./screenshots/labelLetter_letter.png)
+![Example_labelLetter_numbers](./screenshots/labelLetter_numbers.png)

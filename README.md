@@ -179,3 +179,18 @@ If you want your component (for example, a button) to only be able to close the 
 ![Example_context](./screenshots/keyboard_context.png)
 
 If you want to reset the inputValue, but don't want to do it with a button on the keyboard, you can use any other button with `onClick={() => keyboardFeature({ resetText: true })}`
+
+## Examples:
+
+### singlyBack and betweenButtons
+
+If you want the backspace key to be separate, use the `singlyBack` prop. You can also use the `betweenButtons` prop to increase the distance between the keys.
+
+![Example_singlyBack](./screenshots/singlyBack_betweenButtons.png)
+
+### labelLetterButton
+
+If you want to use numbers separately from letters, then use the `labelLetterButton` prop. You can also use the `numberColumns` and `numbersRows` props to change columns and rows in a numeric block.
+
+![Example_labelLetter](./screenshots/labelLetter_letter.png)
+![Example_labelLetter_numbers](./screenshots/labelLetter_numbers.png)
