@@ -131,28 +131,29 @@ export default App;
 
 ### Properties
 
-| Name                    | Type               | Description                                                  |
-| ----------------------- | ------------------ | ------------------------------------------------------------ |
-| `numbers*`              | `string[]`         | Array of number and special characters for keyboard buttons. |
-| `letters`               | `string[]`         | Array of letters characters for keyboard buttons.            |
-| `reverseButton*`        | `boolean`          | Text reset button.                                           |
-| `betweenButtons*`       | `string \| number` | Distance between buttons.                                    |
-| `functionalButtonStyle` | `object`           | Object containing styles for functional buttons.             |
-| `.backButtonStyle*`     | `object`           | Styles for the back button including className.              |
-| `..className`           | `string`           | ClassName for the back button.                               |
-| `.spaceButtonStyle*`    | `object`           | Styles for space button including className.                 |
-| `..className`           | `string`           | ClassName for the space button.                              |
-| `.letterButtonStyle*`   | `object`           | Styles for letter buttons including className.               |
-| `..className`           | `string`           | ClassName for the letter buttons.                            |
-| `.reverseButtonStyle*`  | `object`           | Styles for reverse button including className.               |
-| `..className`           | `string`           | ClassName for the reverse button.                            |
-| `.enterButtonStyle*`    | `object`           | Styles for enter button including className.                 |
-| `..className`           | `string`           | ClassName for the enter button.                              |
-| `.capsButtonStyle*`     | `object`           | Styles for caps button including className.                  |
-| `..className`           | `string`           | ClassName for the caps button.                               |
-| `numberButtonStyle*`    | `object`           | Styles for number buttons including className.               |
-| `.className`            | `string`           | ClassName for the number buttons.                            |
-| `textButtonStyle`       | `object`           | Styles for text buttons including className.                 |
-| `.className`            | `string`           | ClassName for the text buttons.                              |
+| Name                    | Type               | Description                                                             |
+| ----------------------- | ------------------ | ----------------------------------------------------------------------- |
+| `numbers*`              | `string[]`         | Array of number and special characters for keyboard buttons.            |
+| `letters`               | `string[]`         | Array of letters characters for keyboard buttons.                       |
+| `reverseButton*`        | `boolean`          | Text reset button.                                                      |
+| `betweenButtons*`       | `string \| number` | Distance between buttons.                                               |
+| `alwaysOpen*`           | `boolean`          | If you want the keyboard to always be open, set `true`. Default `false` |
+| `functionalButtonStyle` | `object`           | Object containing styles for functional buttons.                        |
+| `.backButtonStyle*`     | `object`           | Styles for the back button including className.                         |
+| `..className`           | `string`           | ClassName for the back button.                                          |
+| `.spaceButtonStyle*`    | `object`           | Styles for space button including className.                            |
+| `..className`           | `string`           | ClassName for the space button.                                         |
+| `.letterButtonStyle*`   | `object`           | Styles for letter buttons including className.                          |
+| `..className`           | `string`           | ClassName for the letter buttons.                                       |
+| `.reverseButtonStyle*`  | `object`           | Styles for reverse button including className.                          |
+| `..className`           | `string`           | ClassName for the reverse button.                                       |
+| `.enterButtonStyle*`    | `object`           | Styles for enter button including className.                            |
+| `..className`           | `string`           | ClassName for the enter button.                                         |
+| `.capsButtonStyle*`     | `object`           | Styles for caps button including className.                             |
+| `..className`           | `string`           | ClassName for the caps button.                                          |
+| `numberButtonStyle*`    | `object`           | Styles for number buttons including className.                          |
+| `.className`            | `string`           | ClassName for the number buttons.                                       |
+| `textButtonStyle`       | `object`           | Styles for text buttons including className.                            |
+| `.className`            | `string`           | ClassName for the text buttons.                                         |
 
 Props marked with \* are required.

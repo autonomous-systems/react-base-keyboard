@@ -10,11 +10,13 @@ interface MuiKeyboardContextProps {
 
 interface ContextProps extends DefaultKeyboardProps {
   children?: React.ReactNode;
+  alwaysOpen?: boolean;
 }
 
 const MuiKeyboardContext = React.createContext<MuiKeyboardContextProps | undefined>(undefined);
 
 export const MuiKeyboardProvider: React.FC<ContextProps> = ({
+  alwaysOpen = false,
   className,
   children,
   numbers,
@@ -47,6 +49,19 @@ export const MuiKeyboardProvider: React.FC<ContextProps> = ({
     return (
       <>
         {openKeyboard && (
+          <DefaultKeyboard
+            className={className}
+            setInputValue={setInputValue}
+            numbers={numbers}
+            letters={letters}
+            reverseButton={reverseButton}
+            betweenButtons={betweenButtons}
+            numberButtonStyle={numberButtonStyle}
+            textButtonStyle={textButtonStyle}
+            functionalButtonStyle={functionalButtonStyle}
+          />
+        )}
+        {alwaysOpen && (
           <DefaultKeyboard
             className={className}
             setInputValue={setInputValue}
