@@ -12,6 +12,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
       - run: pnpm i
       - run: pnpm test
       - run: pnpm build
@@ -29,7 +32,10 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/.
           always-auth: true
-      - run: pnpm
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+      - run: pnpm i
       - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

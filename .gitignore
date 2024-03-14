@@ -6,7 +6,6 @@
 
 # misc
 .DS_Store
-.npmrc
 
 #Errors
 yarn-error.log*
