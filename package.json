@@ -1,9 +1,9 @@
 {
-  "name": "@autosys/react-mui-keyboard",
-  "version": "1.3.0",
+  "name": "@autosys/react-base-keyboard",
+  "version": "2.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/autonomous-systems/react-mui-keyboard.git"
+    "url": "git+https://github.com/autonomous-systems/react-base-keyboard.git"
   },
   "license": "MIT",
   "author": {
