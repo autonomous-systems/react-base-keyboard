@@ -8,11 +8,8 @@ export const KeyboardButton: React.FC<KeyboardButtonProps> = ({
   icon,
 }) => {
   return (
-    <button
-      className={`btn ${buttonStyle?.bgColor} ${buttonStyle?.borderStyle} ${buttonStyle?.textStyle} ${buttonStyle?.layout}`}
-      onClick={onClick}
-    >
-      <div className='flex flex-row justify-between items-center'>
+    <button className={`btn ${buttonStyle?.className}`} onClick={onClick}>
+      <div className="flex flex-row justify-between items-center">
         {label}
         {icon}
       </div>

@@ -1,8 +1,5 @@
 export interface ButtonStyle {
-  layout?: string;
-  bgColor?: string;
-  borderStyle?: string;
-  textStyle?: string;
+  className: string;
 }
 
 export interface KeyboardButtonProps {

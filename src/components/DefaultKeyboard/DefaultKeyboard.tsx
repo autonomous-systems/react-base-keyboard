@@ -153,9 +153,7 @@ export const DefaultKeyboard: React.FC<DefaultKeyboardProps> = ({
 
             <KeyboardButton
               onClick={() => handleButtonClick('caps')}
-              buttonStyle={{
-                borderStyle: 'btn-ghost',
-              }}
+              buttonStyle={functionalButtonStyle?.capsButtonStyle}
               icon={
                 <Caps className={`w-5 h-5 ${isCapsLockOn ? 'fill-success' : 'fill-indigo-800'}`} />
               }
