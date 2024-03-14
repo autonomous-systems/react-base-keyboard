@@ -8,7 +8,7 @@ export interface DefaultKeyboardProps {
   letters: string[];
   reverseButton?: boolean;
   betweenButtons?: string | number;
-  numberButtonStyle: ButtonStyle;
+  numberButtonStyle?: ButtonStyle;
   textButtonStyle: ButtonStyle;
   functionalButtonStyle?: {
     backButtonStyle?: ButtonStyle;
