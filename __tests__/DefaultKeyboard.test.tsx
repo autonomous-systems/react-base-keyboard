@@ -13,22 +13,17 @@ describe('MuiKeyboard', () => {
   test('renders without errors', () => {
     const { container } = render(
       <DefaultKeyboard
-         textButtonStyle={{
-      bgColor: 'bg-slate-100 hover:bg-indigo-300',
-      borderStyle: 'btn-outline border-indigo-800/70 shadow-md',
-      textStyle: 'text-indigo-900 text-xl',
-      layout: 'm-1 w-16',
-    }}
-     numberButtonStyle={{
-      bgColor: 'bg-slate-100 hover:bg-indigo-300',
-      borderStyle: 'btn-outline border-indigo-800/70',
-      textStyle: 'text-indigo-900 text-xl',
-      layout: 'm-1 w-20',
-    }}
-        
+        textButtonStyle={{
+          className:
+            'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 shadow-md text-indigo-900 text-xl m-1 w-16',
+        }}
+        numberButtonStyle={{
+          className:
+            'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 text-indigo-900 text-xl m-1 w-20',
+        }}
         setInputValue={mockSetInputValue}
         letters={russianLetters}
-      />
+      />,
     );
     expect(container).toBeInTheDocument();
   });
@@ -37,20 +32,16 @@ describe('MuiKeyboard', () => {
     const { getByText } = render(
       <DefaultKeyboard
         textButtonStyle={{
-      bgColor: 'bg-slate-100 hover:bg-indigo-300',
-      borderStyle: 'btn-outline border-indigo-800/70 shadow-md',
-      textStyle: 'text-indigo-900 text-xl',
-      layout: 'm-1 w-16',
-    }}
-     numberButtonStyle={{
-      bgColor: 'bg-slate-100 hover:bg-indigo-300',
-      borderStyle: 'btn-outline border-indigo-800/70',
-      textStyle: 'text-indigo-900 text-xl',
-      layout: 'm-1 w-20',
-    }}
+          className:
+            'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 shadow-md text-indigo-900 text-xl m-1 w-16',
+        }}
+        numberButtonStyle={{
+          className:
+            'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 text-indigo-900 text-xl m-1 w-20',
+        }}
         setInputValue={mockSetInputValue}
         letters={russianLetters}
-      />
+      />,
     );
     const keyButton = getByText('А');
     fireEvent.click(keyButton);
@@ -62,21 +53,17 @@ describe('MuiKeyboard', () => {
   test('calls setInputValue with backspace key', () => {
     const { getByTestId } = render(
       <DefaultKeyboard
-         textButtonStyle={{
-      bgColor: 'bg-slate-100 hover:bg-indigo-300',
-      borderStyle: 'btn-outline border-indigo-800/70 shadow-md',
-      textStyle: 'text-indigo-900 text-xl',
-      layout: 'm-1 w-16',
-    }}
-     numberButtonStyle={{
-      bgColor: 'bg-slate-100 hover:bg-indigo-300',
-      borderStyle: 'btn-outline border-indigo-800/70',
-      textStyle: 'text-indigo-900 text-xl',
-      layout: 'm-1 w-20',
-    }}
+        textButtonStyle={{
+          className:
+            'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 shadow-md text-indigo-900 text-xl m-1 w-16',
+        }}
+        numberButtonStyle={{
+          className:
+            'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 text-indigo-900 text-xl m-1 w-20',
+        }}
         setInputValue={mockSetInputValue}
         letters={russianLetters}
-      />
+      />,
     );
     const backspaceButton = getByTestId('BackspaceIcon');
     fireEvent.click(backspaceButton);
