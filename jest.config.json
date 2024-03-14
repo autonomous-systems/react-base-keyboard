@@ -19,7 +19,7 @@
   "coverageReporters": ["json", "text"],
   "collectCoverageFrom": ["**/src/**/*", "!**/stories", "!**/*.stories.tsx"],
   "displayName": {
-    "name": "react-material-ui-keyboard",
+    "name": "react-base-keyboard",
     "color": "green"
   }
 }
