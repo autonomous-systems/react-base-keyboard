@@ -1,40 +1,21 @@
 import React from 'react';
-import { Button } from '@mui/material';
-import { ButtonProps } from '@mui/material/Button';
-
-interface KeyboardButtonProps extends ButtonProps {
-  label?: string;
-  margin?: string | number;
-  width?: string;
-  onClick?: () => void;
-}
+import { KeyboardButtonProps } from '../../types';
 
 export const KeyboardButton: React.FC<KeyboardButtonProps> = ({
   label,
   onClick,
-  margin,
-  width,
-  size,
-  color,
-  disabled,
-  fullWidth,
-  variant,
-  startIcon,
-  children,
+  buttonStyle,
+  icon,
 }) => {
   return (
-    <Button
-      variant={variant}
-      color={color}
+    <button
+      className={`btn ${buttonStyle?.bgColor} ${buttonStyle?.borderStyle} ${buttonStyle?.textStyle} ${buttonStyle?.layout}`}
       onClick={onClick}
-      size={size}
-      disabled={disabled}
-      fullWidth={fullWidth}
-      startIcon={startIcon}
-      sx={{ m: { margin }, width: { width }, textTransform: 'none' }}
     >
-      {label}
-      {children}
-    </Button>
+      <div className='flex flex-row justify-between items-center'>
+        {label}
+        {icon}
+      </div>
+    </button>
   );
 };

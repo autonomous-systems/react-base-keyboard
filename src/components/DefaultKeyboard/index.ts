@@ -1,2 +1,1 @@
-export * from './KeyboardButton';
 export * from './DefaultKeyboard';

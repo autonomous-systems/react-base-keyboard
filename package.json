@@ -11,15 +11,9 @@
     "email": "k.ramzaev@auto-sys.su",
     "url": "https://github.com/autonomous-systems"
   },
-  "dependencies": {
-    "@emotion/react": "11.11.1",
-    "@emotion/styled": "11.11.0",
-    "@mui/base": "^5.0.0-beta.14",
-    "@mui/icons-material": "5.14.8",
-    "@mui/material": "5.14.8"
-  },
   "scripts": {
-    "build": "rm -rf dist/ && pnpm build:esm && pnpm build:cjs",
+    "clean": "rm -rf dist/",
+    "build": "pnpm clean && pnpm build:esm && pnpm build:cjs",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "test": "jest",
@@ -34,10 +28,10 @@
   "keywords": [
     "react",
     "typescript",
-    "material-ui",
-    "material-ui-keyboard",
-    "mui-keyboard",
-    "mui"
+    "tailwind",
+    "material-base-keyboard",
+    "base-keyboard",
+    "daisyui"
   ],
   "browserslist": {
     "production": [
@@ -57,6 +51,7 @@
     "@types/jest": "^29.5.3",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
+    "daisyui": "^4.6.1",
     "functions-have-names": "^1.2.3",
     "jest": "29.7.0",
     "jest-canvas-mock": "^2.5.2",
@@ -64,6 +59,7 @@
     "prettier": "^3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tailwindcss": "^3.4.1",
     "ts-jest": "^29.1.1",
     "tslib": "^2.6.2",
     "typescript": "5.2.2",
