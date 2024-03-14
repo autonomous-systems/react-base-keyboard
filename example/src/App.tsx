@@ -1,13 +1,20 @@
 import React from 'react';
-import { TextField } from '@mui/material';
 import { useMuiKeyboard } from '../../src/context';
 
 const App = () => {
-  const { inputValue, slideEffect } = useMuiKeyboard();
+  const { inputValue, keyBoard, keyboardFeature } = useMuiKeyboard();
   return (
-    <TextField value={inputValue} onClick={slideEffect} label="Click!">
-      Hello
-    </TextField>
+    <div>
+      <input
+        type="text"
+        className="input input-bordered input-primary w-full max-w-xs"
+        value={inputValue}
+      />
+      {keyBoard}
+      <button className="btn" onClick={() => keyboardFeature({ openKeyboard: true })}>
+        {'open'}
+      </button>
+    </div>
   );
 };
 
