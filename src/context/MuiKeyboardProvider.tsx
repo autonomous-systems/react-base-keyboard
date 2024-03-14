@@ -1,111 +1,96 @@
-import React, { createContext, useContext, useState } from 'react';
-import { MuiKeyboard } from '../components';
-import { ButtonProps, SlideProps } from '@mui/material';
-import { SxProps } from '@mui/system';
+import React from 'react';
+import { DefaultKeyboard } from '../components/index';
+import { DefaultKeyboardProps } from '../types';
 
 interface MuiKeyboardContextProps {
   inputValue: string;
-  keyboardFeature: (options: { resetText?: boolean; slideEffect?: boolean }) => void;
+  keyboardFeature: (options: { resetText?: boolean; openKeyboard?: boolean }) => void;
+  keyBoard: React.ReactNode;
 }
 
-interface ContextProps {
+interface ContextProps extends DefaultKeyboardProps {
   children?: React.ReactNode;
-  textField?: React.ReactNode;
-  slide?: boolean;
-  direction?: SlideProps['direction'];
-  checked?: boolean;
-  setInputValue?: React.Dispatch<React.SetStateAction<string>>;
-  numbers?: string[];
-  firstLanguage: string[];
-  secondLanguage?: string[];
-  secondLangLabel?: string;
-  firstLangLabel?: string;
-  keyboardWidth?: string | number;
-  buttonSize?: ButtonProps['size'];
-  labelLangButton?: boolean;
-  reverseButton?: boolean;
-  singlyBack?: boolean;
-  labelLetterButton?: boolean;
-  betweenButtons?: string | number;
-  numbersColumns?: string;
-  numbersRows?: string;
-  allKeyboardStyle?: SxProps;
-  timeout?: SlideProps['timeout'];
+  alwaysOpen?: boolean;
 }
 
-const MuiKeyboardContext = createContext<MuiKeyboardContextProps | undefined>(undefined);
+const MuiKeyboardContext = React.createContext<MuiKeyboardContextProps | undefined>(undefined);
 
 export const MuiKeyboardProvider: React.FC<ContextProps> = ({
+  alwaysOpen = false,
+  className,
   children,
-  textField,
-  slide = true,
-  direction = 'up',
   numbers,
-  firstLanguage,
-  secondLanguage,
-  secondLangLabel,
-  firstLangLabel,
-  keyboardWidth,
-  buttonSize,
-  labelLangButton,
+  letters,
   reverseButton,
-  singlyBack,
-  labelLetterButton,
   betweenButtons,
-  numbersColumns,
-  numbersRows,
-  allKeyboardStyle,
-  timeout,
+  numberButtonStyle,
+  textButtonStyle,
+  functionalButtonStyle,
 }) => {
-  const [inputValue, setInputValue] = useState('');
-  const [checked, setChecked] = useState(false);
-  const keyboardFeature = (options: { resetText?: boolean; slideEffect?: boolean } = {}) => {
-    const { resetText, slideEffect } = options;
+  const [inputValue, setInputValue] = React.useState('');
+  const [openKeyboard, setOpenKeyboard] = React.useState(false);
+  const keyboardFeature = (options: { resetText?: boolean; openKeyboard?: boolean } = {}) => {
+    const { resetText } = options;
+    const { openKeyboard } = options;
     if (resetText) {
       setInputValue(() => '');
       return;
     }
-    if (slideEffect) {
-      setChecked((pr) => !pr);
+    if (openKeyboard) {
+      setOpenKeyboard(true);
+      return;
     } else {
-      setChecked(false);
+      setOpenKeyboard(false);
+      return;
     }
   };
 
-  return (
-    <MuiKeyboardContext.Provider value={{ inputValue, keyboardFeature }}>
-      {children}
-      <MuiKeyboard
-        setInputValue={setInputValue}
-        textField={textField}
-        slide={slide}
-        direction={direction}
-        checked={checked}
-        numbers={numbers}
-        firstLanguage={firstLanguage}
-        secondLanguage={secondLanguage}
-        secondLangLabel={secondLangLabel}
-        firstLangLabel={firstLangLabel}
-        keyboardWidth={keyboardWidth}
-        buttonSize={buttonSize}
-        labelLangButton={labelLangButton}
-        reverseButton={reverseButton}
-        singlyBack={singlyBack}
-        labelLetterButton={labelLetterButton}
-        betweenButtons={betweenButtons}
-        numbersColumns={numbersColumns}
-        numbersRows={numbersRows}
-        allKeyboardStyle={allKeyboardStyle}
-        timeout={timeout}
-      />
-    </MuiKeyboardContext.Provider>
-  );
+  const keyBoard = React.useMemo(() => {
+    return (
+      <>
+        {openKeyboard && (
+          <DefaultKeyboard
+            className={className}
+            setInputValue={setInputValue}
+            numbers={numbers}
+            letters={letters}
+            reverseButton={reverseButton}
+            betweenButtons={betweenButtons}
+            numberButtonStyle={numberButtonStyle}
+            textButtonStyle={textButtonStyle}
+            functionalButtonStyle={functionalButtonStyle}
+          />
+        )}
+        {alwaysOpen && (
+          <DefaultKeyboard
+            className={className}
+            setInputValue={setInputValue}
+            numbers={numbers}
+            letters={letters}
+            reverseButton={reverseButton}
+            betweenButtons={betweenButtons}
+            numberButtonStyle={numberButtonStyle}
+            textButtonStyle={textButtonStyle}
+            functionalButtonStyle={functionalButtonStyle}
+          />
+        )}
+      </>
+    );
+  }, [openKeyboard]);
+
+  const contextValue: MuiKeyboardContextProps = {
+    inputValue,
+    keyboardFeature,
+    keyBoard,
+  };
+
+  return <MuiKeyboardContext.Provider value={contextValue}>{children}</MuiKeyboardContext.Provider>;
 };
 
 export const useMuiKeyboard = (): MuiKeyboardContextProps => {
-  const context = useContext(MuiKeyboardContext);
+  const context = React.useContext(MuiKeyboardContext);
   if (!context) {
-    throw new Error('useInputValue must be used within an InputValueProvider');
+    throw new Error('useMuiKeyboard must be used within an MuiKeyboardProvider');
   }
   return context;
 };

@@ -12,9 +12,9 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: yarn
-      - run: yarn test
-      - run: yarn build
+      - run: pnpm i
+      - run: pnpm test
+      - run: pnpm build
 
   publish-gpr:
     needs: build
@@ -29,7 +29,7 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/.
           always-auth: true
-      - run: yarn
-      - run: yarn publish
+      - run: pnpm
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}

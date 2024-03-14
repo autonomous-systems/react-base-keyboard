@@ -1,21 +1,20 @@
 # On-Screen Keyboard App
 
-This is an example application featuring a virtual on-screen keyboard, developed using React and Material-UI (MUI).
+This is an example application featuring a virtual on-screen keyboard, developed using React, TailwindCSS and DaisyUI.
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![DaisyUI](https://img.shields.io/badge/daisyui-5A0EF8?style=for-the-badge&logo=daisyui&logoColor=white)
 
-![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+![PNPM](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220)
 [![Licence](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
 
-Read this in other languages: [Русский](README.ru.md)
-
-![Screenshot](./screenshots/en_screen.png)
+![Screenshot](./screenshots/englishLetters.jpg)
 
 <!-- <hr> -->
 
-With this application, users can input text using the virtual keyboard, select the keyboard layout language (Russian or English), use Caps Lock, Backspace, Space, and Enter keys.
+With this application, users can input text using the virtual keyboard, use Caps Lock, Backspace, Space, and Enter keys.
 
 ## Installation:
 
@@ -23,22 +22,21 @@ With this application, users can input text using the virtual keyboard, select t
 
 Install with npm:
 
-`npm install @autosys/react-mui-keyboard`
+`npm install @autosys/react-base-keyboard`
 
 Install with yarn:
 
-`yarn add @autosys/react-mui-keyboard`
+`yarn add @autosys/react-base-keyboard`
 
-## Usage
+Install with pnpm:
 
-1. To input text, click on the virtual keyboard buttons or use the Caps Lock, Backspace, Space, and Enter keys.
-
-2. To change the keyboard layout language, click on the "RU" button (Russian layout) or "EN" button (English layout).
+`pnpm add @autosys/react-base-keyboard`
 
 ## Technologies
 
 - React: JavaScript library for building user interfaces.
-- Material-UI (MUI): Component library for creating stylish user interfaces.
+- TailwindCSS: CSS framework.
+- DaisyUI: component library for Tailwind CSS.
 
 ## License
 
@@ -46,108 +44,58 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Example Usage:
 
-```tsx
-import React, { useState } from 'react';
-import { TextField } from '@mui/material';
-import { MuiKeyboard } from '@autosys/react-mui-keyboard';
-import { russianButtons, englishButtons, numbers } from 'path_to_your_button_data';
-
-const App = () => {
-  const [checked, setChecked] = useState(false);
-  const [inputValue, setInputValue] = useState<string>('');
-
-  const handleUrlChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleChange = () => {
-    setChecked((prev) => !prev);
-  };
-
-  return (
-    <MuiKeyboard
-      textField={
-        <TextField
-          onChange={handleUrlChange}
-          onClick={handleChange}
-          value={inputValue}
-          fullWidth
-          multiline
-        />
-      }
-      slide
-      direction="up"
-      checked={checked}
-      setInputValue={setInputValue}
-      numbers={numbers}
-      firstLanguage={russianButtons}
-      secondLanguage={englishButtons}
-      secondLangLabel="EN"
-      firstLangLabel="RU"
-      keyboardWidth={'900px'}
-      buttonSize="medium"
-      labelLangButton
-      reverseButton
-      sx={{ display: 'flex' }}
-    />
-  );
-};
-
-export default App;
-```
-
-### Properties
-
-| Name                | Type                                                                        | Description                                                                                                                                                                       |
-| ------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `textField`         | `JSX.Element`                                                               | Text input field component.                                                                                                                                                       |
-| `slide`             | `boolean`                                                                   | A flag indicating whether the keyboard should appear with a Slide animation. By default, `true`.                                                                                  |
-| `direction`         | `SlideProps <"left" \| "right" \| "up" \| "down">`                          | Slide animation direction (used if `slide` is set to `true`). By default, `up`.                                                                                                   |
-| `checked`           | `boolean`                                                                   | Keyboard visibility state flag.                                                                                                                                                   |
-| `setInputValue`     | `React.Dispatch<React.SetStateAction<string>>`                              | Callback to set the input field's value.                                                                                                                                          |
-| `numbers`           | `string[]`                                                                  | Array of characters for keyboard number buttons.                                                                                                                                  |
-| `firstLanguage*`    | `string[]`                                                                  | Array of characters for keyboard buttons in the first language.                                                                                                                   |
-| `secondLanguage`    | `string[]`                                                                  | Array of characters for keyboard buttons in the second language.                                                                                                                  |
-| `secondLangLabel`   | `string`                                                                    | Label for the second language.                                                                                                                                                    |
-| `firstLangLabel`    | `string`                                                                    | Label for the first language.                                                                                                                                                     |
-| `keyboardWidth`     | `string \| number`                                                          | Keyboard width.                                                                                                                                                                   |
-| `buttonSize`        | `ButtonProps <"small" \| "medium" \| "large">`                              | Button size.                                                                                                                                                                      |
-| `labelLangButton`   | `boolean`                                                                   | Language switch button.                                                                                                                                                           |
-| `reverseButton`     | `boolean`                                                                   | Text reset button.                                                                                                                                                                |
-| `singlyBack`        | `boolean`                                                                   | If `true`, the backspace button is separate from the block with numbers.                                                                                                          |
-| `labelLetterButton` | `boolean`                                                                   | If `true`, a button is added to switch between the layout with letters and numbers.                                                                                               |
-| `betweenButtons`    | `string \| number`                                                          | Distance between buttons.                                                                                                                                                         |
-| `numbersColumns`    | `string`                                                                    | The number of columns for numeric keypad when it is separate from letters. By default, `5`.                                                                                       |
-| `numbersRows`       | `string`                                                                    | The number of rows for numeric keypad when it is separate from letters. By default, `3`.                                                                                          |
-| `allKeyboardStyle`  | `SxProps`                                                                   | [The sx prop is a shortcut for defining custom styles that has access to the theme.](https://mui.com/system/getting-started/the-sx-prop/)                                         |
-| `timeout`           | `SlideProps <number \| { appear?: number, enter?: number, exit?: number }>` | [The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.](https://mui.com/material-ui/api/slide/) |
-
-Props marked with \* are required.
-
-### Usage without TextField and with Context
-
-If you want to use the MuiKeyboard component without a built-in TextField and manage the input value using context, follow these steps:
-
 1. Wrap your application with the `MuiKeyboardProvider`:
 
 ```tsx
-// index.tsx
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App';
-import { MuiKeyboardProvider } from '@autosys/react-mui-keyboard';
-import { russianButtons } from '@autosys/react-mui-keyboard';
+import reportWebVitals from './reportWebVitals';
+import { MuiKeyboardProvider } from './context/MuiKeyboardProvider';
+import { numbers, englishLetters } from './Keyboards';
+import './index.css';
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(
   <MuiKeyboardProvider
-    firstLanguage={russianButtons}
-    sx={{ display: 'flex', justifyContent: 'center', mt: 50 }}
-    keyboardWidth={'900px'}
+    letters={englishLetters}
+    numbers={numbers}
+    reverseButton
+    betweenButtons={'10px'}
+    functionalButtonStyle={{
+      backButtonStyle: {
+        className:
+          'bg-slate-100 hover:bg-indigo-300 uppercase text-indigo-900 btn-outline border-indigo-800/70 shadow-md justify-end w-[150px] mr-2',
+      },
+      spaceButtonStyle: {
+        className:
+          'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 text-indigo-900 text-xl m-2 w-full',
+      },
+      letterButtonStyle: {
+        className: 'text-indigo-900 text-xl btn-ghost',
+      },
+      reverseButtonStyle: {
+        className: 'text-indigo-900 text-xl btn-ghost',
+      },
+      enterButtonStyle: {
+        className: 'text-indigo-900 text-xl btn-ghost',
+      },
+      capsButtonStyle: { className: 'btn-ghost' },
+    }}
+    numberButtonStyle={{
+      className:
+        'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 text-indigo-900 text-xl m-1 w-20',
+    }}
+    textButtonStyle={{
+      className:
+        'bg-slate-100 hover:bg-indigo-300 btn-outline border-indigo-800/70 shadow-md text-indigo-900 text-xl m-1 w-16',
+    }}
   >
     <App />
   </MuiKeyboardProvider>,
-  document.getElementById('root'),
 );
+
+reportWebVitals();
 ```
 
 2. Then yo may use the `useMuiKeyboard` hook in any another component to access the input value and setter from the context.
@@ -155,42 +103,57 @@ ReactDOM.render(
 ```tsx
 // App.tsx
 import React from 'react';
-import { TextField } from '@mui/material';
-import { useMuiKeyboard } from '@autosys/react-mui-keyboard';
+import { useMuiKeyboard } from './context/MuiKeyboardProvider';
 
 const App = () => {
-  const { inputValue, keyboardFeature } = useMuiKeyboard();
+  const { inputValue, keyBoard, keyboardFeature } = useMuiKeyboard();
   return (
-    <TextField
-      value={inputValue}
-      onClick={() => keyboardFeature({ slideEffect: true })}
-      label="Click!"
-    >
-      Hello
-    </TextField>
+    <div>
+      <input
+        type="text"
+        className="input input-bordered input-primary w-full max-w-xs"
+        value={inputValue}
+      />
+      {keyBoard}
+      <button className="btn" onClick={() => keyboardFeature({ openKeyboard: true })}>
+        {'open'}
+      </button>
+    </div>
   );
 };
 
 export default App;
 ```
 
-If you want your component (for example, a button) to only be able to close the keyboard, use `onClick={() => keyboardFeature({ slideEffect: false })}`
+- `{keyBoard}` is the keyboard itself
+- If you want to reset the inputValue, but don't want to do it with a button on the keyboard, you can use any other button with `onClick={() => keyboardFeature({ resetText: true })}`
+- To open the keyboard, use `onClick={() => keyboardFeature({ openKeyboard: true })}`, to close `onClick={() => keyboardFeature({ openKeyboard: false })}`
 
-![Example_context](./screenshots/keyboard_context.png)
+### Properties
 
-If you want to reset the inputValue, but don't want to do it with a button on the keyboard, you can use any other button with `onClick={() => keyboardFeature({ resetText: true })}`
+| Name                    | Type               | Description                                                             |
+| ----------------------- | ------------------ | ----------------------------------------------------------------------- |
+| `numbers*`              | `string[]`         | Array of number and special characters for keyboard buttons.            |
+| `letters`               | `string[]`         | Array of letters characters for keyboard buttons.                       |
+| `reverseButton*`        | `boolean`          | Text reset button.                                                      |
+| `betweenButtons*`       | `string \| number` | Distance between buttons.                                               |
+| `alwaysOpen*`           | `boolean`          | If you want the keyboard to always be open, set `true`. Default `false` |
+| `functionalButtonStyle` | `object`           | Object containing styles for functional buttons.                        |
+| `.backButtonStyle*`     | `object`           | Styles for the back button including className.                         |
+| `..className`           | `string`           | ClassName for the back button.                                          |
+| `.spaceButtonStyle*`    | `object`           | Styles for space button including className.                            |
+| `..className`           | `string`           | ClassName for the space button.                                         |
+| `.letterButtonStyle*`   | `object`           | Styles for letter buttons including className.                          |
+| `..className`           | `string`           | ClassName for the letter buttons.                                       |
+| `.reverseButtonStyle*`  | `object`           | Styles for reverse button including className.                          |
+| `..className`           | `string`           | ClassName for the reverse button.                                       |
+| `.enterButtonStyle*`    | `object`           | Styles for enter button including className.                            |
+| `..className`           | `string`           | ClassName for the enter button.                                         |
+| `.capsButtonStyle*`     | `object`           | Styles for caps button including className.                             |
+| `..className`           | `string`           | ClassName for the caps button.                                          |
+| `numberButtonStyle*`    | `object`           | Styles for number buttons including className.                          |
+| `.className`            | `string`           | ClassName for the number buttons.                                       |
+| `textButtonStyle`       | `object`           | Styles for text buttons including className.                            |
+| `.className`            | `string`           | ClassName for the text buttons.                                         |
 
-## Examples:
-
-### singlyBack and betweenButtons
-
-If you want the backspace key to be separate, use the `singlyBack` prop. You can also use the `betweenButtons` prop to increase the distance between the keys.
-
-![Example_singlyBack](./screenshots/singlyBack_betweenButtons.png)
-
-### labelLetterButton
-
-If you want to use numbers separately from letters, then use the `labelLetterButton` prop. You can also use the `numberColumns` and `numbersRows` props to change columns and rows in a numeric block.
-
-![Example_labelLetter](./screenshots/labelLetter_letter.png)
-![Example_labelLetter_numbers](./screenshots/labelLetter_numbers.png)
+Props marked with \* are required.

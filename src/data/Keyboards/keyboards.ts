@@ -10,13 +10,22 @@ export const numbers: string[] = [
   '9',
   '0',
   '-',
+  '/',
+  ':',
+  ';',
+  '(',
+  ')',
+  '₽',
+  '&',
+  '@',
+  '"',
   '.',
   ',',
   '?',
   '!',
 ];
 
-export const russianButtons: string[] = [
+export const russianLetters: string[] = [
   'й',
   'ц',
   'у',
@@ -51,7 +60,7 @@ export const russianButtons: string[] = [
   'ю',
 ];
 
-export const englishButtons: string[] = [
+export const englishLetters: string[] = [
   'q',
   'w',
   'e',
@@ -78,8 +87,4 @@ export const englishButtons: string[] = [
   'b',
   'n',
   'm',
-  '.',
-  ',',
-  '?',
-  '!',
 ];

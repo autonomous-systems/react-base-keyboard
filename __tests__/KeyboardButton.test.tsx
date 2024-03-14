@@ -16,10 +16,4 @@ describe('KeyboardButton', () => {
     fireEvent.click(button);
     expect(onClickMock).toHaveBeenCalled();
   });
-
-  test('applies custom width', () => {
-    const { container } = render(<KeyboardButton label="Custom Width" width="200px" />);
-    const button = container.querySelector('button');
-    expect(button).toHaveStyle('width: 200px');
-  });
 });
