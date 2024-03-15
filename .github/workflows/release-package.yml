@@ -9,13 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
         with:
+          version: 8
+          run_install: false
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          registry-url: https://registry.npmjs.org
           node-version: 16
       - uses: pnpm/action-setup@v3
         with:
           version: 8
-      - run: pnpm i
+      - run: pnpm install --frozen-lockfile
       - run: pnpm test
       - run: pnpm build
 
@@ -27,15 +35,17 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/.
-          always-auth: true
       - uses: pnpm/action-setup@v3
         with:
           version: 8
-      - run: pnpm i
-      - run: pnpm publish
+      - uses: actions/setup-node@v3
+        with:
+          cache: pnpm
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+          always-auth: true
+      - run: pnpm install --frozen-lockfile
+      - name: Publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: pnpm publish --access public --no-git-checks

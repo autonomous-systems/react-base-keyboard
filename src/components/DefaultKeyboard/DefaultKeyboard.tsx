@@ -90,7 +90,7 @@ export const DefaultKeyboard: React.FC<DefaultKeyboardProps> = ({
     <div className={`flex mt-2 justify-center ${className}`}>
       <div
         style={{ width: '800px' }}
-        className="card bg-base-100 shadow-[0_5px_50px_-10px_rgba(0,0,0,0.3)]"
+        className="card bg-slate-100 shadow-[0_5px_50px_-10px_rgba(0,0,0,0.3)]"
       >
         {!isLettersMode && numbers && (
           <>
@@ -143,7 +143,7 @@ export const DefaultKeyboard: React.FC<DefaultKeyboardProps> = ({
           </>
         )}
 
-        <div className="grid grid-cols-[repeat(12,1fr)] ml-1 mr-1">
+        <div className="grid grid-cols-12 ml-1 mr-1">
           <div className="col-span-2 flex items-center">
             <KeyboardButton
               buttonStyle={functionalButtonStyle?.letterButtonStyle}
@@ -155,7 +155,11 @@ export const DefaultKeyboard: React.FC<DefaultKeyboardProps> = ({
               onClick={() => handleButtonClick('caps')}
               buttonStyle={functionalButtonStyle?.capsButtonStyle}
               icon={
-                <Caps className={`w-5 h-5 ${isCapsLockOn ? 'fill-success' : 'fill-indigo-800'}`} />
+                <Caps
+                  className={`w-5 h-5 ${
+                    isCapsLockOn ? 'fill-current text-success' : 'fill-current text-indigo-800'
+                  }`}
+                />
               }
             />
           </div>
@@ -163,7 +167,7 @@ export const DefaultKeyboard: React.FC<DefaultKeyboardProps> = ({
             <KeyboardButton
               buttonStyle={functionalButtonStyle?.spaceButtonStyle}
               onClick={handleSpaceClick}
-              icon={<Space className="w-5 h-5 fill-indigo-800 mr-2" />}
+              icon={<Space className="w-5 h-5 fill-current text-indigo-800 mr-2" />}
             />
           </div>
           <div className="flex col-span-2 justify-end items-center">
@@ -171,13 +175,13 @@ export const DefaultKeyboard: React.FC<DefaultKeyboardProps> = ({
               <KeyboardButton
                 buttonStyle={functionalButtonStyle?.reverseButtonStyle}
                 onClick={handleReverseClick}
-                icon={<Reset className="w-5 h-5 fill-indigo-800" />}
+                icon={<Reset className="w-5 h-5 fill-current text-indigo-800" />}
               />
             )}
             <KeyboardButton
               buttonStyle={functionalButtonStyle?.enterButtonStyle}
               onClick={handleEnterClick}
-              icon={<Enter className="w-5 h-5 fill-indigo-800" />}
+              icon={<Enter className="w-5 h-5 fill-current text-indigo-800" />}
             />
           </div>
         </div>
