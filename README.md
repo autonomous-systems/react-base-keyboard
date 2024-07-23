@@ -18,7 +18,7 @@ With this application, users can input text using the virtual keyboard, use Caps
 
 ## Installation:
 
-[![NPM](https://nodei.co/npm/@autosys/react-mui-keyboard.png?downloads=true&stars=true)](https://www.npmjs.com/package/@autosys/react-mui-keyboard)
+[![NPM](https://nodei.co/npm/@autosys/react-base-keyboard.png?downloads=true&stars=true)](https://www.npmjs.com/package/@autosys/react-base-keyboard)
 
 Install with npm:
 
@@ -129,7 +129,7 @@ export default App;
 - If you want to reset the inputValue, but don't want to do it with a button on the keyboard, you can use any other button with `onClick={() => keyboardFeature({ resetText: true })}`
 - To open the keyboard, use `onClick={() => keyboardFeature({ openKeyboard: true })}`, to close `onClick={() => keyboardFeature({ openKeyboard: false })}`
 
-### Properties
+## Properties
 
 | Name                    | Type               | Description                                                             |
 | ----------------------- | ------------------ | ----------------------------------------------------------------------- |
