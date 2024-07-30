@@ -13,9 +13,10 @@
   },
   "scripts": {
     "clean": "rm -rf dist/",
-    "build": "pnpm clean && pnpm build:esm && pnpm build:cjs",
+    "build": "pnpm clean && pnpm build:esm && pnpm build:cjs && pnpm build:css",
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:css": "tailwindcss -o dist/index.css --minify",
     "test": "jest",
     "prepare": "pnpm build"
   },
