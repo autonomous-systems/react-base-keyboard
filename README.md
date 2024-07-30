@@ -51,8 +51,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { MuiKeyboardProvider } from './context/MuiKeyboardProvider';
-import { numbers, englishLetters } from './Keyboards';
+import { MuiKeyboardProvider } from '@autosys/react-base-keyboard';
+import { numbers, englishLetters } from 'path_to_your_button_data or @autosys/react-base-keyboard';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
@@ -103,7 +103,7 @@ reportWebVitals();
 ```tsx
 // App.tsx
 import React from 'react';
-import { useMuiKeyboard } from './context/MuiKeyboardProvider';
+import { useMuiKeyboard } from '@autosys/react-base-keyboard';
 
 const App = () => {
   const { inputValue, keyBoard, keyboardFeature } = useMuiKeyboard();
@@ -128,6 +128,46 @@ export default App;
 - `{keyBoard}` is the keyboard itself
 - If you want to reset the inputValue, but don't want to do it with a button on the keyboard, you can use any other button with `onClick={() => keyboardFeature({ resetText: true })}`
 - To open the keyboard, use `onClick={() => keyboardFeature({ openKeyboard: true })}`, to close `onClick={() => keyboardFeature({ openKeyboard: false })}`
+
+### Tailwind Configuration
+
+In your `tailwind.config.(js|ts)`:
+
+```tsx
+module.exports = {
+  content: [
+    './src/**/*.{js,jsx,ts,tsx}',
+    './node_modules/@autosys/react-base-keyboard/**/*.{ts,tsx,js,jsx}',
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
+### Monorepo Setup
+
+If you’re working in a monorepo with workspaces, you may need to use require.resolve to ensure Tailwind can see your content files:
+
+In `tailwind.config.(js|ts)`:
+
+```tsx
+const path = require('path');
+
+module.exports = {
+  content: [
+    './components/**/*.{html,js}',
+    './pages/**/*.{html,js}',
+    path.join(path.dirname(require.resolve('@autosys/react-base-keyboard')), '**/*.{ts,tsx,js,jsx}'),
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+```
+
 
 ## Properties
 
